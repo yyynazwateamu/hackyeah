@@ -5,6 +5,9 @@ python:
 services:
   - docker
 
+install:
+  - cat requirements.txt
+
 before_script: pip install docker-compose
 
 script:
