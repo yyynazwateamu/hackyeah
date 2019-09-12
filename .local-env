@@ -1,0 +1,4 @@
+POSTGRES_USER=hackyeah
+POSTGRES_DB=hackyeah
+POSTGRES_PASSWORD=hackyeah
+COMPOSE_PROJECT_NAME=hackyeah
