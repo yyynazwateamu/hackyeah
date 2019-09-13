@@ -8,16 +8,20 @@ services:
 - docker
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_c40b3948b632_key -iv $encrypted_c40b3948b632_iv -in deploy_key.enc -out deploy_key -d
+  - openssl aes-256-cbc -K $encrypted_c40b3948b632_key -iv $encrypted_c40b3948b632_iv -in deploy_key.enc -out deploy_key.pew -d
 install:
-- cat requirements.txt && cat deploy_key && echo $COMPOSE_PROJECT_NAME
+- cat requirements.txt
+- cat deploy_key
+- echo $COMPOSE_PROJECT_NAME
 before_script: pip install docker-compose
+
 script:
 - sudo docker-compose run web bash -c "pytest"
+
 after_success:
 - eval "$(ssh-agent -s)"
-- chmod 600 ./deploy_key
+- chmod 600 ./deploy_key.pem
 - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- ssh-add ./deploy_key
-- ssh -i ./deploy_key deployer@159.89.28.170 pwd
+- ssh-add ./deploy_key.pem
+- ssh -i ./deploy_key.pem deployer@159.89.28.170 pwd
 
