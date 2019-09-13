@@ -23,6 +23,15 @@ services:
       - ../.env
     command: bash -c "python manage.py migrate && gunicorn -b 0:8000 --workers 2 hackyeah.wsgi"
 
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: ./Dockerfile
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    command: bash -c "npm run build"
+
   nginx:
     restart: always
     image: nginx:1.17.3
