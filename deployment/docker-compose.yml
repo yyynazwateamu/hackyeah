@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: ./Dockerfile
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    command: bash -c "npm run build"
+
   web:
     restart: always
     build:
@@ -21,16 +30,11 @@ services:
     env_file:
       - ../.local-env
       - ../.env
-    command: bash -c "python manage.py migrate && gunicorn -b 0:8000 --workers 2 hackyeah.wsgi"
+    command: bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -b 0:8000 --workers 2 hackyeah.wsgi"
+    depends_on:
+      - frontend
+      - postgres
 
-  frontend:
-    build:
-      context: ../frontend
-      dockerfile: ./Dockerfile
-    volumes:
-      - ../frontend:/app
-      - /app/node_modules
-    command: bash -c "npm run build"
 
   nginx:
     restart: always
@@ -44,6 +48,7 @@ services:
       - web:web
     depends_on:
       - web
+      - frontend
 
   postgres:
     restart: always

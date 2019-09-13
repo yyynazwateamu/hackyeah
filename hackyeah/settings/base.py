@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,13 @@ TEMPLATES = [
         },
     },
 ]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'frontend/build/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend/config/webpack-stats.json'),
+    }
+}
 
 WSGI_APPLICATION = 'hackyeah.wsgi.application'
 
@@ -108,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-path = 'frontend/config/web-stats.json'
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -126,6 +133,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend/build/static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 STATIC_URL = '/static/'
