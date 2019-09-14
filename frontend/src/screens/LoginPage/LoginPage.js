@@ -76,6 +76,7 @@ const LoginPage = (props: Props) => {
             </FormHelperText>}
             <CustomButton
               text="Log in"
+              inForm
             />
             <Grid container>
               <Grid item xs>
