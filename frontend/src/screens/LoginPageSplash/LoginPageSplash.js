@@ -1,16 +1,22 @@
 //@flow
 import React from 'react';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import './login-page-splash.scss';
 
 const LoginPageSplash = (props: Props) => {
 
   return (
     <React.Fragment>
-      <img src="https://picsum.photos/200/300" alt=""/>
-      <span>Pociąg do wiedzy</span>
-      <span>Gra dla pasażerów PKP intercity</span>
-      <button onClick={props.onGuestClick}>Graj za pomocą numeru biletu</button>
-      <button onClick={props.onUserClick}>Zaloguj się</button>
-      <button>Zarejestruj się</button>
+      <img className="upper-img" src="https://picsum.photos/200/300" alt=""/>
+      <Container className="login">
+        <span className="login__title">Pociąg do wiedzy</span>
+        <span>Gra dla pasażerów PKP intercity</span>
+        <Button className="login__button" variant="contained" onClick={props.onGuestClick}>Graj za pomocą numeru biletu</Button>
+        <Button className="login__button" variant="contained" color="primary" onClick={props.onUserClick}>Zaloguj się</Button>
+        <Button className="login__button" variant="contained" color="primary">Zarejestruj się</Button>
+      </Container>
+      
     </React.Fragment>
   );
 };
