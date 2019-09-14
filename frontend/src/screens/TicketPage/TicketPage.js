@@ -60,6 +60,7 @@ const TicketPage = (props: Props) => {
             </FormHelperText>}
             <CustomButton
               text="Enter the lobby"
+              inForm
             />
           </form>
         </div>

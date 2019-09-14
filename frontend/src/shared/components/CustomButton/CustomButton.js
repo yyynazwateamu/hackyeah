@@ -14,12 +14,17 @@ const useStyles = makeStyles(theme => ({
   bottom : {
     position: 'absolute',
     bottom: '15px',
+  },
+  loginForm: {
+    width: '100%',
+    margin: '0',
   }
 }));
 
 const CustomButton = (props: Props) => {
     const classes = useStyles();
-    const submit = props.bottom ? `${classes.submit} ${classes.bottom}` : classes.submit;
+    let submit = props.bottom ? `${classes.submit} ${classes.bottom}` : classes.submit;
+    submit = props.inForm ? `${submit} ${classes.loginForm}` : submit;
     return (
         <Button
             type="submit"
@@ -43,4 +48,5 @@ type Props = {
     text: string,
     bottom?: boolean,
     className?: string,
+    inForm?: boolean,
 }
