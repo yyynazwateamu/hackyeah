@@ -1,5 +1,7 @@
 import React from 'react';
 import CustomAppBar from '@components/CustomAppBar/CustomAppBar';
+import LobbyTable from './LobbyTable';
+import CustomButton from '@components/CustomButton/CustomButton';
 
 const options = [
   'Zgłoś',
@@ -9,7 +11,9 @@ const options = [
 export default function ButtonAppBar(props: Props) {
   return (
     <div >
-        <CustomAppBar title="Lobby" options={['Zgłoś']} path={'/'} history={props.history} />
+        <CustomAppBar title="Lobby" options={options} path={'/'} history={props.history} />
+        <LobbyTable />
+        <CustomButton text='Gotowość 3/4' bottom />
     </div>
   );
 }

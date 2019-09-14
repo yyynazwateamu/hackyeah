@@ -6,7 +6,7 @@ const ProtectedScreen = (props: Props) => {
   const [redirect, setRedirect] = useState(null);
 
   useEffect(() => {
-    let timeout = setTimeout(() => props.history.push('/login'),
+    let timeout = setTimeout(() => props.history.push('/start'),
       3000);
     setRedirect(timeout);
 
