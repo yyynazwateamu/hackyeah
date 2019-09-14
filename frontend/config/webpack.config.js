@@ -299,6 +299,7 @@ module.exports = function(webpackEnv) {
         '@reducers': path.resolve(__dirname, '../src/shared/reducers'),
         '@services': path.resolve(__dirname, '../src/shared/services'),
         '@types': path.resolve(__dirname, '../src/shared/types'),
+        '@util': path.resolve(__dirname, '../src/shared/util'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
