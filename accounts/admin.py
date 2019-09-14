@@ -2,18 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 # from accounts.models import User
-from accounts.klasy import TestUser
+from accounts.models import CustomUser
+
 
 class CustomUserAdmin(UserAdmin):
     pass
 
-class check_hello():
-    def __init__(self):
-        self.a = TestUser()
-        # return a.say_hello()
-
-    def hello(self):
-        print(self.a.say_hello, 'accounts admin')
-        return self.a.say_hello()
-
-# admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
