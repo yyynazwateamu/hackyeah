@@ -10,7 +10,7 @@ import {authSelectors} from '@reducers';
 import {authActions} from '@actions';
 import {requestStatus} from '@constants';
 import { useLoginStyles } from '@util';
-import { CustomButton } from '@components';
+import {CustomButton, LoadingModal} from '@components';
 
 const LoginPageGuest = (props: Props) => {
 
@@ -32,7 +32,7 @@ const LoginPageGuest = (props: Props) => {
 
   return (
     <React.Fragment>
-      {props.requestStatus === requestStatus.PENDING && <div>laduje</div>}
+      <LoadingModal open={props.requestStatus === requestStatus.PENDING} />
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer}>

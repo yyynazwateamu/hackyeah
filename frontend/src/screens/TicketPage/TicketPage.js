@@ -9,6 +9,7 @@ import {
 import {requestStatus} from '@constants';
 import { useLoginStyles } from '@util';
 import CustomButton from '@components/CustomButton/CustomButton';
+import {LoadingModal} from '@components/LoadingModal';
 
 const TicketPage = (props: Props) => {
 
@@ -29,6 +30,7 @@ const TicketPage = (props: Props) => {
 
   return (
     <React.Fragment>
+      <LoadingModal open={props.requestStatus === requestStatus.PENDING} />
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer}>
