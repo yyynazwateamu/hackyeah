@@ -10,7 +10,7 @@ import { authSelectors } from '@reducers';
 import { authActions } from '@actions';
 import { requestStatus } from '@constants';
 import { useLoginStyles } from '@util';
-import { CustomButton } from '@components';
+import { CustomButton, LoadingModal } from '@components';
 
 const LoginPage = (props: Props) => {
 
