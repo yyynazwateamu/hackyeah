@@ -11,10 +11,10 @@ const LoginPageSplash = (props: Props) => {
       <img className="upper-img" src="https://picsum.photos/200/300" alt=""/>
       <Container className="login">
         <span className="login__title">Pociąg do wiedzy</span>
-        <span>Gra dla pasażerów PKP intercity</span>
-        <Button className="login__button" variant="contained" onClick={props.onGuestClick}>Graj za pomocą numeru biletu</Button>
-        <Button className="login__button" variant="contained" color="primary" onClick={props.onUserClick}>Zaloguj się</Button>
-        <Button className="login__button" variant="contained" color="primary">Zarejestruj się</Button>
+        <span className="login__info">Gra dla pasażerów PKP intercity</span>
+        <Button href="loginGuest" className="login__button" variant="contained" onClick={props.onGuestClick}>Graj za pomocą numeru biletu</Button>
+        <Button href="login" className="login__button" variant="contained" color="primary" onClick={props.onUserClick}>Zaloguj się</Button>
+        <Button href="signup" className="login__button" variant="contained" color="primary">Zarejestruj się</Button>
       </Container>
       
     </React.Fragment>

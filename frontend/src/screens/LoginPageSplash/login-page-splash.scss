@@ -1,20 +1,31 @@
 .upper-img {
   max-height: 40%;
+  margin: auto;
+  display: block;
 }
 
 .login {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  max-width: 500px;
+  font-size: 1.5rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-align: center;
   .login__button {
-    margin: auto;
     width: 80%;
+    font-size: 0.9375rem;
   }
 
   .login__title {
-    font-size: 150%;
+    font-size: 2.15rem;
     border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+  }
+  
+  .login__info, .login__title, .login__button{
+    margin: 10px auto;
   }
 }
