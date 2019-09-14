@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -23,7 +24,7 @@ class AnonymousUserViewSet(APIView):
         if serializer.is_valid():
             user = serializer.save()
             token = TokenObtainPairSerializer.get_token(user)
-            return Response({'accesss': str(token.access_token)})
+            return JsonResponse({'access': str(token.access_token)})
         else:
-            return Response(serializer.errors, status=400)
+            return JsonResponse(serializer.errors, status=400)
 

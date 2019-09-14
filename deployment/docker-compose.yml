@@ -38,10 +38,10 @@ services:
     links:
       - web:web
     environment:
-      HTTPS_METHOD: noredirect
+      - HTTPS_METHOD=noredirect
+      - HSTS=off
     depends_on:
       - web
-#      - frontend
 
   postgres:
     restart: always
