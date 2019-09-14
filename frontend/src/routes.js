@@ -9,7 +9,7 @@ const Routes = () => (
   <Router>
     <GuestPath exact path='/' component={SplashContainer} />
     <ProtectedPath path='/start' component={StartContainer} />
-    <ProtectedPath path='/lobby' component={LobbyContainer} />
+    <GuestPath path='/lobby' component={LobbyContainer} />
   </Router>
 );
 
