@@ -3,13 +3,14 @@ import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {
   Container, Typography,
-  CssBaseline, TextField, Button, Grid, Link, FormHelperText
+  CssBaseline, TextField, Grid, Link, FormHelperText
 
 } from '@material-ui/core';
 import { authSelectors } from '@reducers';
 import { authActions } from '@actions';
 import { requestStatus } from '@constants';
 import { useLoginStyles } from '@util';
+import { CustomButton } from '@components';
 
 const LoginPage = (props: Props) => {
 
@@ -32,12 +33,11 @@ const LoginPage = (props: Props) => {
 
   return (
     <React.Fragment>
-      { props.requestStatus === requestStatus.PENDING && <div>laduje</div> }
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer} >
           <Typography component="h1" variant="h4" className={classes.header} >
-            ZALOGUJ SIĘ
+            LOG IN
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
@@ -46,7 +46,7 @@ const LoginPage = (props: Props) => {
               required
               fullWidth
               id="email"
-              label="Nazwa użytkownika"
+              label="Username"
               name="email"
               autoComplete="email"
               autoFocus
@@ -60,7 +60,7 @@ const LoginPage = (props: Props) => {
               required
               fullWidth
               name="password"
-              label="Hasło"
+              label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -74,25 +74,18 @@ const LoginPage = (props: Props) => {
             >
               {(props.error && props.error.detail) || 'Loging error'}
             </FormHelperText>}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.submit}
-            >
-              Zaloguj się
-            </Button>
+            <CustomButton
+              text="Log in"
+            />
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Zapomniałeś hasła?
+                  Forgot your password?
                 </Link>
               </Grid>
               <Grid item xs className={classes.register}>
                 <Link href={'/signup'} variant="body2">
-                  Nie masz jeszcze konta? Zarejestruj się!
+                  Do not have an account? Register here!
                 </Link>
               </Grid>
             </Grid>

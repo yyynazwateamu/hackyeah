@@ -3,13 +3,14 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {
   Container, Typography,
-  CssBaseline, TextField, Button, Grid, Link,
+  CssBaseline, TextField, Grid, Link,
   FormHelperText
 } from '@material-ui/core';
 import {authSelectors} from '@reducers';
 import {authActions} from '@actions';
 import {requestStatus} from '@constants';
 import { useLoginStyles } from '@util';
+import { CustomButton } from '@components';
 
 const LoginPageGuest = (props: Props) => {
 
@@ -36,7 +37,7 @@ const LoginPageGuest = (props: Props) => {
         <CssBaseline/>
         <div className={classes.formContainer}>
           <Typography component="h1" variant="h4" className={classes.header}>
-            DOŁĄCZ DO GRY
+            JOIN THE GAME
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
@@ -45,7 +46,7 @@ const LoginPageGuest = (props: Props) => {
               required
               fullWidth
               id="nickname"
-              label="Nazwa gracza"
+              label="Username"
               name="nickname"
               autoComplete="nickname"
               autoFocus
@@ -59,20 +60,14 @@ const LoginPageGuest = (props: Props) => {
             >
               {(props.error && props.error.detail) || 'Loging error'}
             </FormHelperText>}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.submit}
+            <CustomButton
+              text="Log in as a guest"
             >
-              Zaloguj się jako gość
-            </Button>
+            </CustomButton>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Zobacz dlaczego warto założyć konto i zarejestruj się
+                  Check why it is worth to sign up here
                 </Link>
               </Grid>
             </Grid>

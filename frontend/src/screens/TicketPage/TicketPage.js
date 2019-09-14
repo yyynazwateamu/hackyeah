@@ -3,11 +3,12 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {
   Container, Typography,
-  CssBaseline, TextField, Button,
+  CssBaseline, TextField,
   FormHelperText
 } from '@material-ui/core';
 import {requestStatus} from '@constants';
 import { useLoginStyles } from '@util';
+import CustomButton from '@components/CustomButton/CustomButton';
 
 const TicketPage = (props: Props) => {
 
@@ -55,16 +56,9 @@ const TicketPage = (props: Props) => {
             >
               {(props.error && props.error.detail) || 'Ticket error'}
             </FormHelperText>}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.submit}
-            >
-              Enter the lobby
-            </Button>
+            <CustomButton
+              text="Enter the lobby"
+            />
           </form>
         </div>
       </Container>
