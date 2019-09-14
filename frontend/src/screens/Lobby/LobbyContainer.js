@@ -8,7 +8,7 @@ const options = [
 ];
 
 
-export default function ButtonAppBar(props: Props) {
+export default function LobbyContainer(props: Props) {
   return (
     <div >
         <CustomAppBar title="Lobby" options={options} path={'/'} history={props.history} />
