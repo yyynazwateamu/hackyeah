@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'webpack_loader',
-    'accounts'
+    'accounts',
+    'game',
+    'train',
 ]
 
 MIDDLEWARE = [
@@ -82,8 +84,7 @@ WEBPACK_LOADER = {
 }
 DJOSER = {
     'SERIALIZERS': {
-        'current_user':'accounts.serializers.UserSerializer',
-
+        'current_user': 'accounts.serializers.UserSerializer',
     }
 }
 
