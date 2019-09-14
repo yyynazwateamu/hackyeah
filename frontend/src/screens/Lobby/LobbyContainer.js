@@ -7,8 +7,8 @@ const options = [
   'Zgłoś',
 ];
 
-
-export default function ButtonAppBar(props: Props) {
+const ButtonAppBar = (props: Props) => {
+  props.getLobbyData();
   return (
     <div >
         <CustomAppBar title="Lobby" options={options} path={'/'} history={props.history} />
@@ -21,3 +21,13 @@ export default function ButtonAppBar(props: Props) {
 type Props = {
     history: object,
 }
+
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getLobbyData: () => dispatch(lobbyActions.getLobbyData()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonAppBar);
