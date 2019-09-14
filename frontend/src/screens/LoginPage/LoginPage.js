@@ -1,12 +1,15 @@
 //@flow
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {
   Container, Typography,
   CssBaseline, TextField, Button, Grid, Link
 
 } from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import { authSelectors } from '@reducers';
+import { authActions } from '@actions';
+import { requestStatus } from '@constants';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,12 +48,20 @@ const LoginPage = (props: Props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username);
-    console.log(password);
+    props.login(username, password);
   };
+
+  useEffect(() => {
+    if ( props.requestStatus === requestStatus.SUCCESS ) {
+      props.history.push('/ticket');
+    }
+  }, [props.requestStatus]);
+
 
   return (
     <React.Fragment>
+      { props.requestStatus === requestStatus.PENDING && <div>laduje</div> }
+      { props.requestStatus === requestStatus.FAILURE && <div>error</div> }
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer} >
@@ -116,16 +127,25 @@ const LoginPage = (props: Props) => {
 };
 
 type Props = {
-
+  error?: {
+    code: number,
+    detail: string,
+  },
+  requestStatus: string,
+  login: (username: string, password: string) => void,
+  history: {
+    push: () => void,
+  },
 };
 
 const mapStateToProps = (state) => ({
-
+  error: authSelectors.getError(state),
+  requestStatus: authSelectors.getStatus(state),
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
-
+  login: (username, password) => dispatch(authActions.loginWithAccount(username, password))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

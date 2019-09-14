@@ -33,5 +33,9 @@ export function authReducer(state = initialState, action) {
 }
 
 export const authSelectors = {
-	isAuthenticated : state => !!state.auth.token
+	isAuthenticated : state => !!state.auth.token,
+	getError: state => state.auth.error,
+	getAnonymous: state => state.auth.anonymous,
+	getToken: state => state.auth.token,
+	getStatus: state => state.auth.status,
 };
