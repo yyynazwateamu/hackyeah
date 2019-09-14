@@ -9,39 +9,11 @@ import {
 import { authSelectors } from '@reducers';
 import { authActions } from '@actions';
 import { requestStatus } from '@constants';
-import { makeStyles } from '@material-ui/core/styles';
-
-
-const useStyles = makeStyles(theme => ({
-  formContainer: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-
-  header: {
-    textAlign: 'center',
-    width:'80%',
-    borderBottom: '1px solid #aaa',
-    paddingBottom: '5px',
-  },
-
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-  register: {
-    textAlign: 'right',
-  }
-}));
+import { useLoginStyles } from '@util';
 
 const LoginPage = (props: Props) => {
 
-  const classes = useStyles();
+  const classes = useLoginStyles();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -119,7 +91,7 @@ const LoginPage = (props: Props) => {
                 </Link>
               </Grid>
               <Grid item xs className={classes.register}>
-                <Link href="#" variant="body2">
+                <Link href={'/signup'} variant="body2">
                   Nie masz jeszcze konta? Zarejestruj się!
                 </Link>
               </Grid>
