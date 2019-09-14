@@ -25,7 +25,6 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-const eslint = require('eslint');
 const BundleTracker = require('webpack-bundle-tracker');
 
 const postcssNormalize = require('postcss-normalize');
@@ -299,6 +298,7 @@ module.exports = function(webpackEnv) {
         '@reducers': path.resolve(__dirname, '../src/shared/reducers'),
         '@services': path.resolve(__dirname, '../src/shared/services'),
         '@types': path.resolve(__dirname, '../src/shared/types'),
+        '@constants': path.resolve(__dirname, '../src/shared/constants'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
