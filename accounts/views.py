@@ -4,13 +4,15 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 from djoser.serializers import UserCreateSerializer
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from accounts.models import CustomUser
+from accounts.models import CustomUser, validate_ticket_number
+from accounts.serializers import UserSerializer
+from train.models import Train
 
 
 class AnonymousUserViewSet(APIView):
@@ -28,3 +30,18 @@ class AnonymousUserViewSet(APIView):
         else:
             return JsonResponse(serializer.errors, status=400)
 
+
+class UserLobbyView(APIView):
+
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        try:
+            ticket_number = request.data['ticket_number']
+            validate_ticket_number(ticket_number)
+        except:
+            return JsonResponse({"ticket_number": ['Provide valid ticket number',]}, status=400)
+        user = request.user
+        user.ticket_number = ticket_number
+        user.save()
+        return JsonResponse(UserSerializer(request.user).data)
