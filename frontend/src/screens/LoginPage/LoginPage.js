@@ -10,6 +10,7 @@ import { authSelectors } from '@reducers';
 import { authActions } from '@actions';
 import { requestStatus } from '@constants';
 import { makeStyles } from '@material-ui/core/styles';
+import { LoadingModal } from '@components';
 
 
 const useStyles = makeStyles(theme => ({
@@ -31,12 +32,14 @@ const useStyles = makeStyles(theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
+
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+
   register: {
     textAlign: 'right',
-  }
+  },
 }));
 
 const LoginPage = (props: Props) => {
@@ -60,7 +63,7 @@ const LoginPage = (props: Props) => {
 
   return (
     <React.Fragment>
-      { props.requestStatus === requestStatus.PENDING && <div>laduje</div> }
+      <LoadingModal open={props.requestStatus === requestStatus.PENDING} />
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer} >
