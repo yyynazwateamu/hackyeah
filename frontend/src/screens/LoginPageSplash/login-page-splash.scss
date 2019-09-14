@@ -1,0 +1,20 @@
+.upper-img {
+  max-height: 40%;
+}
+
+.login {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .login__button {
+    margin: auto;
+    width: 80%;
+  }
+
+  .login__title {
+    font-size: 150%;
+    border-bottom: 1px solid #000;
+  }
+}
