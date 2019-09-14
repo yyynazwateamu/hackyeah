@@ -9,7 +9,7 @@ const loginWithAccount = (username, password) => dispatch => {
 			dispatch({ type: authConstants.LOGIN_WITH_ACCOUNT_SUCCESS, payload: { token } });
 		})
 		.catch(error => {
-			dispatch({ type: authConstants.LOGIN_WITH_ACCOUNT_FAILURE, error: { error } });
+			dispatch({ type: authConstants.LOGIN_WITH_ACCOUNT_FAILURE, error: { ...error } });
 		});
 };
 
@@ -21,11 +21,17 @@ const loginWithoutAccount = username => dispatch => {
 			dispatch({ type: authConstants.LOGIN_WITHOUT_ACCOUNT_SUCCESS, payload: { token } });
 		})
 		.catch(error => {
-			dispatch({ type: authConstants.LOGIN_WITHOUT_ACCOUNT_FAILURE, error: { error } });
+			dispatch({ type: authConstants.LOGIN_WITHOUT_ACCOUNT_FAILURE, error: { ...error } });
 		});
+};
+
+const logout = () => {
+	authService.logout();
+	return { type: authConstants.LOGOUT };
 };
 
 export const authActions = {
 	loginWithAccount,
 	loginWithoutAccount,
+	logout,
 };
