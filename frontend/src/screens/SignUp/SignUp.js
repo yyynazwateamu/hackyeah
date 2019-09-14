@@ -1,7 +1,7 @@
 //@flow
 import React from 'react';
 
-const LoginPageUser = () => {
+const SignUp = () => {
 
   return (
     <div>
@@ -10,4 +10,4 @@ const LoginPageUser = () => {
 };
 
 
-export default LoginPageUser;
+export default SignUp;
