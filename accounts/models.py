@@ -3,7 +3,7 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
-    pass
+    anonymous = models.BooleanField(default=False)
 
 # class UserProfile(models.Model):
 #     user = models.OneToOneField('CustomUser', on_delete=models.CASCADE)
