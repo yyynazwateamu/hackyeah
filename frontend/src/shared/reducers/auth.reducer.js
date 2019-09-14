@@ -1,8 +1,9 @@
 import { authConstants, requestStatus } from '@constants';
+import { JWTUtils } from '@util';
 
 const initialState = {
 	status: requestStatus.IDLE,
-	token: undefined,
+	token: JWTUtils.getJWT(),
 	anonymous: undefined,
 	error: undefined,
 };
