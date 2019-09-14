@@ -27,7 +27,7 @@ SECRET_KEY = 'vj1sdhw5&0z-5a9c$mh6hv$revx7^l+v)w#)k_!+a2=+$izy^_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'hackyeah.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# https://docs.djangchange repository visibilities for this organization
 
 DATABASES = {
     'default': {
