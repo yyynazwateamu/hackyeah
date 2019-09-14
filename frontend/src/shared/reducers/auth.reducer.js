@@ -23,6 +23,9 @@ export function authReducer(state = initialState, action) {
 
 	case authConstants.LOGOUT:
 		return initialState;
+
+	default:
+		return state;
 	}
 }
 
