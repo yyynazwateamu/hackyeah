@@ -7,8 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ArrowBack from '@material-ui/icons/ArrowBack';
+import MenuIcon from '@material-ui/icons/Menu';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import SearchIcon from '@material-ui/icons/Search';
+import ShareIcon from '@material-ui/icons/Share';
 
 const options = [
   'Zgłoś',
@@ -28,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     textAlign: 'center',
   },
-  backArrow: {
+  icon: {
       color: 'white',
   },
 }));
@@ -47,29 +49,18 @@ const CustomAppBar = (props: Props) => {
     setAnchorEl(null);
   }
 
-  const handleBackClick = () => {
-    props.history.push(props.path);
-  }
+  // const handleBackClick = () => {
+  //   props.history.push(props.path);
+  // }
+  const handleIconClick = () => {
+    console.log('Pyk');
+  };
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-        {!props.hideArrow && <IconButton className={classes.backArrow}
-            aria-label="more"
-            aria-controls="long-menu"
-            aria-haspopup="true"
-            onClick={handleBackClick}
-            >
-            <ArrowBack />
-        </IconButton>
-        }
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          </IconButton>
-          <Typography variant="h5" className={classes.title}>
-            {props.title}
-          </Typography>
-          {!props.hideMenu && 
+        {!props.hideMenu && 
           <React.Fragment>
             <IconButton
                 aria-label="more"
@@ -77,7 +68,7 @@ const CustomAppBar = (props: Props) => {
                 aria-haspopup="true"
                 onClick={handleClick}
             >
-                <MoreVertIcon />
+                <MenuIcon className={classes.icon}/>
             </IconButton>
             <Menu
                 id="long-menu"
@@ -100,19 +91,48 @@ const CustomAppBar = (props: Props) => {
             </Menu>
           </React.Fragment>
         }
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          </IconButton>
+          <Typography variant="h5" className={classes.title}>
+            {props.title}
+          </Typography>
+          <IconButton
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+            >
+                <ShareIcon className={classes.icon} />
+            </IconButton>
+          <IconButton
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+            >
+                <FavoriteIcon className={classes.icon} />
+            </IconButton>
+            <IconButton
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+            >
+                <SearchIcon className={classes.icon} />
+            </IconButton>
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
 
 type Props = {
     history: object,
     path: string,
     options: array,
     title: string,
-    hideMenu?: bool,
-    hideArrow?: bool,
+    hideMenu?: boolean,
+    // hideArrow?: bool,
 }
 
 export default CustomAppBar;
