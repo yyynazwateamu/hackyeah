@@ -1,11 +1,11 @@
 import React from 'react';
 
 const SplashContainer = () => {
-    return (
-        <div>
+  return (
+    <div>
             Jeden
-        </div>
-    );
+    </div>
+  );
 };
 
 export default SplashContainer;

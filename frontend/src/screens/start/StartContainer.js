@@ -1,11 +1,11 @@
 import React from 'react';
 
 const StartContainer = () => {
-    return (
-        <div>
+  return (
+    <div>
             Dwa
-        </div>
-    );
+    </div>
+  );
 };
 
 export default StartContainer;
