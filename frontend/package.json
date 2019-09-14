@@ -154,5 +154,6 @@
     "eslint-plugin-only-warn": "^1.0.1",
     "flow-bin": "^0.107.0",
     "webpack-bundle-tracker": "^0.4.2-beta"
-  }
+  },
+  "proxy": "http://127.0.0.1:8000"
 }

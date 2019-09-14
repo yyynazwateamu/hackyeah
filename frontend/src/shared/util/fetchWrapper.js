@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { getJWT } from '@util';
+import { JWTUtils } from '@util';
 
-const BASE_URL = '/api';
+const BASE_URL = '';
 
 const getAccessToken = () => {
-  const JWT = getJWT();
+  const JWT = JWTUtils.getJWT();
   return JWT ? `Bearer ${JWT}` : null;
 };
 
