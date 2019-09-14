@@ -16,14 +16,23 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.http import HttpResponse
 from django.shortcuts import render
-from django.urls import path
+from django.urls import path, re_path, include
+
 
 def index(request):
     return render(request, 'index.html')
 
+def status(request):
+    return HttpResponse('success')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('status/', status),
+    path('accounts/', include('accounts.urls')),
     path('', index),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+\
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ \
     static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns.append(re_path(r'^.*$', index))
