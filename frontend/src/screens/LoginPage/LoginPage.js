@@ -61,7 +61,6 @@ const LoginPage = (props: Props) => {
   return (
     <React.Fragment>
       { props.requestStatus === requestStatus.PENDING && <div>laduje</div> }
-      { props.requestStatus === requestStatus.FAILURE && <div>error</div> }
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer} >
