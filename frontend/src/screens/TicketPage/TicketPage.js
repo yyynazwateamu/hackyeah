@@ -3,24 +3,21 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {
   Container, Typography,
-  CssBaseline, TextField, Grid, Link,
+  CssBaseline, TextField,
   FormHelperText
 } from '@material-ui/core';
-import {authSelectors} from '@reducers';
-import {authActions} from '@actions';
 import {requestStatus} from '@constants';
 import { useLoginStyles } from '@util';
-import { CustomButton } from '@components';
+import CustomButton from '@components/CustomButton/CustomButton';
 
-const LoginPageGuest = (props: Props) => {
+const TicketPage = (props: Props) => {
 
   const classes = useLoginStyles();
 
-  const [username, setUsername] = useState('');
+  const [ticket, setTicket] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.login(username);
   };
 
   useEffect(() => {
@@ -32,7 +29,6 @@ const LoginPageGuest = (props: Props) => {
 
   return (
     <React.Fragment>
-      {props.requestStatus === requestStatus.PENDING && <div>laduje</div>}
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer}>
@@ -46,32 +42,24 @@ const LoginPageGuest = (props: Props) => {
               required
               fullWidth
               id="nickname"
-              label="Username"
+              label="Ticket number"
               name="nickname"
               autoComplete="nickname"
               autoFocus
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={ticket}
+              onChange={(e) => setTicket(e.target.value)}
               error={props.requestStatus === requestStatus.FAILURE}
             />
             {props.requestStatus === requestStatus.FAILURE && <FormHelperText
               error
               id="my-helper-text"
             >
-              {(props.error && props.error.detail) || 'Loging error'}
+              {(props.error && props.error.detail) || 'Ticket error'}
             </FormHelperText>}
             <CustomButton
-              text="Log in as a guest"
+              text="Enter the lobby"
               inForm
-            >
-            </CustomButton>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Check why it is worth to sign up here
-                </Link>
-              </Grid>
-            </Grid>
+            />
           </form>
         </div>
       </Container>
@@ -85,20 +73,17 @@ type Props = {
     detail: string,
   },
   requestStatus: string,
-  login: (username: string, password: string) => void,
+  sendTicket: (password: string) => void,
   history: {
     push: () => void,
   },
 };
 
 const mapStateToProps = (state) => ({
-  error: authSelectors.getError(state),
-  requestStatus: authSelectors.getStatus(state),
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (username) => dispatch(authActions.loginWithoutAccount(username))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPageGuest);
+export default connect(mapStateToProps, mapDispatchToProps)(TicketPage);

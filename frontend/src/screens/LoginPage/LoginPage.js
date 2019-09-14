@@ -3,45 +3,18 @@ import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {
   Container, Typography,
-  CssBaseline, TextField, Button, Grid, Link, FormHelperText
+  CssBaseline, TextField, Grid, Link, FormHelperText
 
 } from '@material-ui/core';
 import { authSelectors } from '@reducers';
 import { authActions } from '@actions';
 import { requestStatus } from '@constants';
-import { makeStyles } from '@material-ui/core/styles';
-
-
-const useStyles = makeStyles(theme => ({
-  formContainer: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-
-  header: {
-    textAlign: 'center',
-    width:'80%',
-    borderBottom: '1px solid #aaa',
-    paddingBottom: '5px',
-  },
-
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-  register: {
-    textAlign: 'right',
-  }
-}));
+import { useLoginStyles } from '@util';
+import { CustomButton, LoadingModal } from '@components';
 
 const LoginPage = (props: Props) => {
 
-  const classes = useStyles();
+  const classes = useLoginStyles();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -60,12 +33,12 @@ const LoginPage = (props: Props) => {
 
   return (
     <React.Fragment>
-      { props.requestStatus === requestStatus.PENDING && <div>laduje</div> }
+      <LoadingModal open={props.requestStatus === requestStatus.PENDING} />
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer} >
           <Typography component="h1" variant="h4" className={classes.header} >
-            ZALOGUJ SIĘ
+            LOG IN
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
@@ -74,7 +47,7 @@ const LoginPage = (props: Props) => {
               required
               fullWidth
               id="email"
-              label="Nazwa użytkownika"
+              label="Username"
               name="email"
               autoComplete="email"
               autoFocus
@@ -88,7 +61,7 @@ const LoginPage = (props: Props) => {
               required
               fullWidth
               name="password"
-              label="Hasło"
+              label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -102,25 +75,19 @@ const LoginPage = (props: Props) => {
             >
               {(props.error && props.error.detail) || 'Loging error'}
             </FormHelperText>}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.submit}
-            >
-              Zaloguj się
-            </Button>
+            <CustomButton
+              text="Log in"
+              inForm
+            />
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Zapomniałeś hasła?
+                  Forgot your password?
                 </Link>
               </Grid>
               <Grid item xs className={classes.register}>
-                <Link href="#" variant="body2">
-                  Nie masz jeszcze konta? Zarejestruj się!
+                <Link href={'/signup'} variant="body2">
+                  Do not have an account? Register here!
                 </Link>
               </Grid>
             </Grid>

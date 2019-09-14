@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ProtectedPath, GuestPath } from '@util';
 import { LoginPage, LoginPageSplash, LoginPageGuest, SignUp,
-  SplashContainer, LobbyContainer } from '@screens';
+  SplashContainer, LobbyContainer, TicketPage } from '@screens';
 
 const Routes = () => (
   <Router>
@@ -12,6 +12,7 @@ const Routes = () => (
     <GuestPath path='/login' component={LoginPage} />
     <GuestPath path='/loginGuest' component={LoginPageGuest} />
     <GuestPath path='/signup' component={SignUp} />
+    <ProtectedPath path='/ticket' component={TicketPage} />
   </Router>
 );
 
