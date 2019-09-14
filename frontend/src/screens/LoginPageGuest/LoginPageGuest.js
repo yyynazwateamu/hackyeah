@@ -62,6 +62,7 @@ const LoginPageGuest = (props: Props) => {
             </FormHelperText>}
             <CustomButton
               text="Log in as a guest"
+              inForm
             >
             </CustomButton>
             <Grid container>
