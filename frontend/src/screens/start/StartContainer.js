@@ -3,7 +3,7 @@ import React from 'react';
 const StartContainer = () => {
   return (
     <div>
-            Dwa
+      Dwa
     </div>
   );
 };
