@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const BASE_URL = '';
+const BASE_URL = '/api';
 
 const getAccessToken = () => {
-  let JWT = JSON.parse(localStorage.getItem('JWT'));
+  let JWT = JSON.parse(localStorage.getItem('user JWT'));
 
-  return JWT ? `JWT ${JWT}` : null;
+  return JWT ? `Bearer ${JWT}` : null;
 };
 
 export const fetchWrapper = {
