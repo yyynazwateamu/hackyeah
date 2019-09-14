@@ -33,6 +33,7 @@ const LoginPage = (props: Props) => {
 
   return (
     <React.Fragment>
+      <LoadingModal open={props.requestStatus === requestStatus.PENDING} />
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer} >

@@ -1,2 +1,2 @@
-export CustomButton from './CustomButton/CustomButton';
-export CustomAppBar from './CustomAppBar/CustomAppBar';
+export { CustomAppBar } from './CustomAppBar';
+export { LoadingModal } from './LoadingModal';
