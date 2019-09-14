@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {
   Container, Typography,
-  CssBaseline, TextField, Button, Grid, Link
+  CssBaseline, TextField, Button, Grid, Link, FormHelperText
 
 } from '@material-ui/core';
 import { authSelectors } from '@reducers';
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
   header: {
     textAlign: 'center',
-    width:'70%',
+    width:'80%',
     borderBottom: '1px solid #aaa',
     paddingBottom: '5px',
   },
@@ -81,7 +81,7 @@ const LoginPage = (props: Props) => {
               autoFocus
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              aria-describedby="username-helper-text"
+              error={props.requestStatus === requestStatus.FAILURE}
             />
             <TextField
               variant="filled"
@@ -95,8 +95,14 @@ const LoginPage = (props: Props) => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              aria-describedby="password-helper-text"
+              error={props.requestStatus === requestStatus.FAILURE}
             />
+            {props.requestStatus === requestStatus.FAILURE && <FormHelperText
+              error
+              id="my-helper-text"
+            >
+              {(props.error && props.error.detail) || 'Loging error'}
+            </FormHelperText>}
             <Button
               type="submit"
               fullWidth
