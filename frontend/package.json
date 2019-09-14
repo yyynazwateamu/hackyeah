@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "7.5.5",
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
@@ -62,7 +61,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development node scripts/start.js",
     "build": "cross-env NODE_ENV=production INLINE_RUNTIME_CHUNK=false node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "flow": "flow"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -133,7 +133,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-flow": "^7.0.0",
     "cross-env": "^5.2.1",
+    "flow-bin": "^0.107.0",
     "webpack-bundle-tracker": "^0.4.2-beta"
   }
 }
