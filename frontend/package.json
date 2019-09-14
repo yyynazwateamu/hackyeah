@@ -44,6 +44,7 @@
     "postcss-normalize": "7.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
+    "ramda": "^0.26.1",
     "react": "^16.9.0",
     "react-app-polyfill": "^1.0.2",
     "react-dev-utils": "^9.0.3",
@@ -146,6 +147,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
     "cross-env": "^5.2.1",
+    "eslint-plugin-only-warn": "^1.0.1",
     "flow-bin": "^0.107.0",
     "webpack-bundle-tracker": "^0.4.2-beta"
   }

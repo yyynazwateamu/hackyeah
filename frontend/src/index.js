@@ -1,4 +1,15 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
-import routes from './routes';
+import Routes from './routes';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import combinedReducer from '@reducers';
 
-ReactDOM.render(routes, document.getElementById('root'));
+const store = createStore(combinedReducer);
+
+ReactDOM.render(
+	<Provider store={store}>
+		<Routes />
+	</Provider>,
+	document.getElementById('root')
+);
