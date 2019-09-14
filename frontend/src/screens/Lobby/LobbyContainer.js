@@ -7,7 +7,7 @@ const options = [
   'Zgłoś',
 ];
 
-const ButtonAppBar = (props: Props) => {
+const LobbyContainer = (props: Props) => {
   props.getLobbyData();
   return (
     <div >
@@ -30,4 +30,4 @@ const mapDispatchToProps = (dispatch) => ({
   getLobbyData: () => dispatch(lobbyActions.getLobbyData()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ButtonAppBar);
+export default connect(mapStateToProps, mapDispatchToProps)(LobbyContainer);

@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     overflowX: 'auto',
+    overflowY: 'hidden',
   },
   table: {
     marginTop: '15px',
