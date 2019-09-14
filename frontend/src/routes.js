@@ -7,11 +7,11 @@ import { LoginPage, LoginPageSplash, LoginPageGuest, SignUp,
 const Routes = () => (
   <Router>
     <GuestPath exact path='/' component={SplashContainer} />
+    <GuestPath path='/lobby' component={LobbyContainer} />
     <GuestPath path='/start' component={LoginPageSplash} />
     <GuestPath path='/login' component={LoginPage} />
     <GuestPath path='/loginGuest' component={LoginPageGuest} />
     <GuestPath path='/signup' component={SignUp} />
-    <ProtectedPath path='/lobby' component={LobbyContainer} />
   </Router>
 );
 

@@ -8,8 +8,8 @@ import combinedReducer from '@reducers';
 const store = createStore(combinedReducer);
 
 ReactDOM.render(
-	<Provider store={store}>
-		<Routes />
-	</Provider>,
-	document.getElementById('root')
+  <Provider store={store}>
+    <Routes />
+  </Provider>,
+  document.getElementById('root')
 );
