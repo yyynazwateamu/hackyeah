@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.4.2",
+    "@material-ui/icons": "^4.4.1",
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
@@ -20,7 +22,6 @@
     "eslint": "^6.1.0",
     "eslint-config-react-app": "^5.0.1",
     "eslint-loader": "2.2.1",
-    "eslint-plugin-flowtype": "3.13.0",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "^7.14.3",
@@ -68,7 +69,9 @@
     "start": "cross-env NODE_ENV=development node scripts/start.js",
     "build": "cross-env NODE_ENV=production INLINE_RUNTIME_CHUNK=false node scripts/build.js",
     "test": "node scripts/test.js",
-    "flow": "flow"
+    "flow": "flow",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -136,13 +139,18 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-export-default-from"
     ]
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/preset-flow": "^7.0.0",
     "cross-env": "^5.2.1",
+    "eslint-plugin-flowtype": "^3.13.0",
     "eslint-plugin-only-warn": "^1.0.1",
     "flow-bin": "^0.107.0",
     "webpack-bundle-tracker": "^0.4.2-beta"
