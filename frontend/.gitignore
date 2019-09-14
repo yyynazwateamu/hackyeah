@@ -11,6 +11,7 @@
 # production
 /build
 webpack-stats.json
+/config/webpack-stats.json
 
 # misc
 .DS_Store
