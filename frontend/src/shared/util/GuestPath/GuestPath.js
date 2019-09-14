@@ -2,14 +2,20 @@
 import React from 'react';
 import { GuestScreen } from '@util';
 import { Route } from 'react-router-dom';
+import {authSelectors} from '@reducers';
+import {connect} from 'react-redux';
 
-const GuestPath = ({ component: Component, ...rest } : { component: any }) => (
-  <Route {...rest} render={(props : { isAuthenticated: boolean }) => (
+const GuestPath = ({ component: Component, ...rest }: { component: any }) => (
+  <Route {...rest} render={(props: { isAuthenticated: boolean }) => (
     props.isAuthenticated
-      ? <Component {...props} />
-      : <GuestScreen {...props} />
+      ? <GuestScreen {...props} />
+      : <Component {...props} />
   )} />
 );
 
 
-export default GuestPath;
+const mapStateToProps = (state) => ({
+  isAuthenticated: authSelectors.isAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(GuestPath);

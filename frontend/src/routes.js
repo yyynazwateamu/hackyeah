@@ -1,12 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ProtectedPath, GuestPath } from '@util';
 import SplashContainer from './screens/splash/SplashContainer';
 import StartContainer from './screens/start/StartContainer';
 
 const Routes = () => (
     <Router>
-        <Route exact path='/' component={SplashContainer} />
-        <Route path='/start' component={StartContainer} />
+        <GuestPath exact path='/' component={SplashContainer} />
+        <ProtectedPath path='/start' component={StartContainer} />
     </Router>
 );
 

@@ -5,7 +5,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:flowtype/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -20,7 +21,8 @@
   },
   "plugins": [
     "react",
-    "only-warn"
+    "only-warn",
+    "flowtype"
   ],
   "rules": {
     "quotes": [

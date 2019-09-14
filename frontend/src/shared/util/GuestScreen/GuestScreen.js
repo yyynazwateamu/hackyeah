@@ -1,18 +1,18 @@
 //@flow
 import React, {useState, useEffect} from 'react';
 
-const GuestScreen = (props : Props) => {
+const GuestScreen = (props: Props) => {
 
   const [redirect, setRedirect] = useState(null);
 
   useEffect(() => {
-    let timeout = setTimeout(() => props.history.push("/game"),
+    let timeout = setTimeout(() => props.history.push('/game'),
       3000);
     setRedirect(timeout);
 
     return () => {
       clearTimeout(redirect);
-    }
+    };
   }, []);
 
   return (
@@ -26,6 +26,6 @@ type Props = {
   history: {
     push: (link: string) => void,
   }
-}
+};
 
 export default GuestScreen;

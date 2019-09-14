@@ -2,15 +2,19 @@
 import React from 'react';
 import { ProtectedScreen } from '@util';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authSelectors } from '@reducers';
 
-const ProtectedPath = ({ component: Component, ...rest } : { component: any }) => (
-  <Route {...rest} render={(props : { isAuthenticated: boolean }) => (
+const ProtectedPath = ({ component: Component, ...rest }: { component: any }) => (
+  <Route {...rest} render={(props: { isAuthenticated: boolean }) => (
     props.isAuthenticated
       ? <Component {...props} />
       : <ProtectedScreen {...props} />
   )} />
 );
 
+const mapStateToProps = (state) => ({
+  isAuthenticated: authSelectors.isAuthenticated(state),
+});
 
-
-export default ProtectedPath;
+export default connect(mapStateToProps)(ProtectedPath);

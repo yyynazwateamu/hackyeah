@@ -2,7 +2,9 @@ import { authConstants, requestStatus } from '@constants';
 
 const initialState = {
 	status: requestStatus.IDLE,
-	token: '',
+	token: undefined,
+	anonymous: undefined,
+	error: undefined,
 };
 
 export function authReducer(state = initialState, action) {
@@ -29,3 +31,6 @@ export function authReducer(state = initialState, action) {
 	}
 }
 
+export const authSelectors = {
+	isAuthenticated : state => !!state.auth.token
+};
