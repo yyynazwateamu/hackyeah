@@ -17,7 +17,7 @@ const ProtectedScreen = (props : Props) => {
 
   return (
     <div>
-      Dwa
+      Brak uprawnień. Zostaniesz przeniesiony do strony logowania.
     </div>
   );
 };
