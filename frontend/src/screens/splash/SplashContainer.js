@@ -3,7 +3,7 @@ import React from 'react';
 const SplashContainer = () => {
   return (
     <div>
-            Jeden
+      Jeden
     </div>
   );
 };
