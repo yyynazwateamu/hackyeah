@@ -38,7 +38,7 @@ services:
     links:
       - web:web
     environment:
-      HTTPS_METHOD: noredirect
+      - HTTPS_METHOD=noredirect
     depends_on:
       - web
 #      - frontend
