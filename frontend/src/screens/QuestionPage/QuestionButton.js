@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme,active) => ({
 const QuestionButton = (props: Props) => {
     const classes = useStyles();
     const submit = props.bottom ? `${classes.submit} ${classes.bottom}` : classes.submit;
-    let result = props.index !== props.selectedAnswer ? '' : (props.rightAnswer ? classes.right : classes.wrong);
     const sendAnswer = () => {
       props.sendAnswer(props.questionID, props.index, props.token);
     };
@@ -50,7 +49,8 @@ const QuestionButton = (props: Props) => {
             variant="contained"
             color={colors.orange}
             size="large"
-            className={`${submit} ${result}`}
+            className={`${submit}`}
+            style={props.index !== props.selectedAnswer ? {} : {backgroundColor: props.rightAnswer ? 'green' : 'red'}}
             onClick={() => {
               if(!props.disabled) {
                 sendAnswer();
