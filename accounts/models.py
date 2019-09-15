@@ -15,6 +15,6 @@ class CustomUser(AbstractUser):
     anonymous = models.BooleanField(default=False)
     ticket_number = models.CharField(max_length=20, validators=[validate_ticket_number], null=True, blank=True)
     ready = models.BooleanField(default=False)
-
+    points = models.PositiveIntegerField(default=0)
 
 
