@@ -20,3 +20,4 @@ export { lobbySelectors } from './lobby.reducer';
 export { ticketSelectors } from './ticket.reducer';
 export { userSelectors } from './user.reducer';
 export { questionSelectors } from './questions.reducer';
+export { leaderboardSelectors } from './leaderboard.reducer';
