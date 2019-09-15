@@ -6,8 +6,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import CheckIcon from '@material-ui/icons/Check';
-import DotLoader from '@assets/icons/dot-loader.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,18 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('1. Jarek', <CheckIcon />),
-  createData('2. Marek', <CheckIcon />),
-  createData('3. Skkrtka', <img src={DotLoader} />),
-  createData('4. Bang bang', <CheckIcon />),
-];
-
-export default function LobbyTable() {
+export default function LobbyTable({ rows }) {
   const classes = useStyles();
 
   return (
@@ -50,14 +37,15 @@ export default function LobbyTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name} className={classes.tableRow}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-            </TableRow>
-          ))}
+          {
+            rows &&
+            rows.map(row => (
+              <TableRow key={row.name} className={classes.tableRow}>
+                <TableCell component="th" scope="row">{row.name}</TableCell>
+                <TableCell align="right">{row.readyIcon}</TableCell>
+              </TableRow>
+            ))
+          }
         </TableBody>
       </Table>
     </Paper>
