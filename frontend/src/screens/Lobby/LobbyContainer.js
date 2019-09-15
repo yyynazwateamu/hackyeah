@@ -9,12 +9,11 @@ import { lobbySelectors } from '@reducers';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import './lobby-container.scss';
+import { history } from '@util';
 
 const options = [
   'Zgłoś',
 ];
-
-
 
 const LobbyContainer = (props: Props) => {
 
@@ -35,6 +34,10 @@ const LobbyContainer = (props: Props) => {
     ready: users.reduce((count, user) => user.ready ? count + 1 : count, 0),
     total: users.length,
   };
+
+  if(userCount && userCount.ready === userCount.total) {
+    history.push('/question');
+  }
 
   return (
     <div >

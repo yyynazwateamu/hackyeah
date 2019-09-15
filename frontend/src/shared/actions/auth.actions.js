@@ -21,6 +21,7 @@ const loginWithoutAccount = username => dispatch => {
 	authService.loginWithoutAccount(username)
 		.then(token => {
 			dispatch({ type: authConstants.LOGIN_WITHOUT_ACCOUNT_SUCCESS, payload: { token } });
+			history.push('/ticket');
 		})
 		.catch(error => {
 			dispatch({ type: authConstants.LOGIN_WITHOUT_ACCOUNT_FAILURE, error: { ...error } });

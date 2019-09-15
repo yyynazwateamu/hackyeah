@@ -1,28 +1,47 @@
 import { questionsConstants } from '@constants';
+import { questionsService } from '@services';
+
+const getQuestions = () => (dispatch) => {
+	dispatch({ type: questionsConstants.FETCH_QUESTIONS_REQUEST });
+
+	questionsService.getQuestions()
+		.then(({ questions, token }) => {
+			dispatch({ type: questionsConstants.FETCH_QUESTIONS_SUCCESS, payload: { questions, token } });
+		})
+		.catch(error => {
+			dispatch({ type: questionsConstants.FETCH_QUESTIONS_FAILURE, error });
+		});
+};
 
 const changeQuestionNumber = () => (dispatch) => {
-    dispatch({ 
-        type: questionsConstants.CHANGE_QUESTION_NUMBER, 
-    })
-}
+	dispatch({
+		type: questionsConstants.CHANGE_QUESTION_NUMBER,
+	});
+};
 
-const checkAnswer = (index) => (dispatch) => {
-    console.log('Hau hau');
-    dispatch({
-        type: questionsConstants.CHECK_ANSWER,
-        index,
-    })
-}
+const checkAnswer = (questionID, answerID, token) => (dispatch) => {
+	console.log(questionID, answerID, token);
+	questionsService.answerQuestion(questionID, answerID, token)
+		.then(rightAnswer => {
+			dispatch({
+				type: questionsConstants.CHECK_ANSWER,
+				payload: {
+					index: answerID,
+					rightAnswer,
+				}
+			});
+		});
+};
 
 const resetQuestions = () => (dispatch) => {
-    console.log('miau');
-    dispatch({
-        type: questionsConstants.RESET_QUESTIONS,
-    })
-}
+	dispatch({
+		type: questionsConstants.RESET_QUESTIONS,
+	});
+};
 
 export const questionsActions = {
-    changeQuestionNumber,
-    checkAnswer,
-    resetQuestions,
-}
+	getQuestions,
+	changeQuestionNumber,
+	checkAnswer,
+	resetQuestions,
+};

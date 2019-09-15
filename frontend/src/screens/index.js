@@ -6,3 +6,4 @@ export SplashPage from './SplashPage/SplashPage';
 export LobbyContainer from './Lobby/LobbyContainer';
 export QuestionContainer from './QuestionPage/QuestionContainer';
 export TicketPage from './TicketPage/TicketPage';
+export Leaderboard from './Leaderboard/Leaderboard';
