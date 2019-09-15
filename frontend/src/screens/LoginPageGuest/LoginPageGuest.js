@@ -23,13 +23,6 @@ const LoginPageGuest = (props: Props) => {
     props.login(username);
   };
 
-  useEffect(() => {
-    if (props.requestStatus === requestStatus.SUCCESS) {
-      props.history.push('/ticket');
-    }
-  }, [props.requestStatus]);
-
-
   return (
     <React.Fragment>
       <LoadingModal open={props.requestStatus === requestStatus.PENDING}/>
