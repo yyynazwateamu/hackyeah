@@ -13,16 +13,44 @@ export default function QuestionContainer(props: Props) {
   return (
     <div >
         <div className={classes.questionButton}>
-            <QuestionButton text='Milówka' />
+            <QuestionButton 
+                text={props.questions.answers[0]} 
+                index={0} 
+                rightAnswer={props.questions.rightAnswer} 
+                sendAnswer={props.sendAnswer}
+                disabled={props.disabled}
+                answerStatus={props.answerStatus}
+                clicked={props.clicked} />
         </div>
         <div className={classes.questionButton}>
-            <QuestionButton text='Zabrze' />
+            <QuestionButton 
+                text={props.questions.answers[1]} 
+                index={1} 
+                rightAnswer={props.questions.rightAnswer} 
+                sendAnswer={props.sendAnswer} 
+                disabled={props.disabled}
+                answerStatus={props.answerStatus}
+                clicked={props.clicked}/>
         </div>
         <div className={classes.questionButton}>
-            <QuestionButton text='Okocim' />
+            <QuestionButton 
+                text={props.questions.answers[2]} 
+                index={2} 
+                rightAnswer={props.questions.rightAnswer} 
+                sendAnswer={props.sendAnswer} 
+                disabled={props.disabled}
+                answerStatus={props.answerStatus}
+                clicked={props.clicked}/>
         </div>
         <div className={classes.questionButton}>
-            <QuestionButton text='Leżajsk' />
+            <QuestionButton 
+                text={props.questions.answers[3]} 
+                index={3} 
+                rightAnswer={props.questions.rightAnswer} 
+                sendAnswer={props.sendAnswer}
+                disabled={props.disabled}
+                answerStatus={props.answerStatus}
+                clicked={props.clicked} />
         </div>
     </div>
   );
