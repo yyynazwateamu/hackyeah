@@ -6,6 +6,7 @@ import colors from '@constants/colors';
 import QuestionList from './QuestionList';
 import { questionsActions } from '@actions';
 import { questionSelectors } from '@reducers';
+import { history } from '@util';
 
 // const questions = [
 //     {
@@ -67,6 +68,9 @@ function QuestionContainer(props: Props) {
             props.changeQuestion();
             props.resetQuestions();
             document.activeElement.blur();
+            if (props.questionNumber === 5) {
+              return history.push('/leaderboard');
+            }
             return setTime(15);
         }
         setTimeout(() => setTime(time-1), 1000);

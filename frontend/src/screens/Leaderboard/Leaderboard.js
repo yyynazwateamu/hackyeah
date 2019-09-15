@@ -14,7 +14,7 @@ const options = [
 
 
 
-const LeaderboardContainer = (props: Props) => {
+const Leaderboard = (props: Props) => {
 
 
   const { users } = props;
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch) => ({
   getUserDetails: () => dispatch(userActions.getUserDetails()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeaderboardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Leaderboard);
