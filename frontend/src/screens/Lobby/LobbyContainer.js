@@ -8,6 +8,8 @@ import { lobbySelectors } from '@reducers';
 import CheckIcon from '@material-ui/icons/Check';
 import DotLoader from '@assets/icons/dot-loader.svg';
 
+import { quizService } from '@services';
+
 const options = [
   'Zgłoś',
 ];
@@ -18,6 +20,7 @@ const LobbyContainer = (props: Props) => {
 
   useEffect(() => {
     props.getLobbyData();
+    quizService.getQuestion();
     const interval = setInterval(() => props.getLobbyData(), 5000);
     return () => clearInterval(interval);
   }, []);
