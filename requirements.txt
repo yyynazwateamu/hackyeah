@@ -11,6 +11,8 @@ django-webpack-loader==0.6.0
 djangorestframework==3.10.3
 djangorestframework-simplejwt==4.3.0
 djoser==2.0.3
+geographiclib==1.49
+geopy==1.20.0
 gunicorn==19.9.0
 importlib-metadata==0.22
 Jinja2==2.10.1
