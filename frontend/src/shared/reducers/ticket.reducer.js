@@ -18,5 +18,6 @@ export function ticketReducer(state = initialState, action) {
 }
 
 export const ticketSelectors = {
-
+	getStatus: state => state.ticket.status,
+	getError: state => state.ticket.error,
 };

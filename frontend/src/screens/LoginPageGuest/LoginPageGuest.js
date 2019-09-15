@@ -92,7 +92,7 @@ type Props = {
     detail: string,
   },
   requestStatus: string,
-  login: (username: string, password: string) => void,
+  login: (username: string) => void,
   history: {
     push: () => void,
   },

@@ -16,11 +16,14 @@ export const useLoginStyles = makeStyles(theme => ({
     paddingBottom: '2px',
     fontSize: '28px !important',
     fontWeight: 'bold !important',
+    fontFamily: '"IBM Plex Sans", sans-serif !important',
   },
 
   subheader: {
     paddingTop: '10px',
     fontSize: '16px',
+    fontFamily: '"Roboto", sans-serif',
+    fontWeight: 300,
   },
 
   form: {
@@ -44,6 +47,14 @@ export const useLoginStyles = makeStyles(theme => ({
     width:'70%',
     textAlign:'center',
     marginTop:'20px',
+  },
+
+  greenIcon: {
+    color: '#000',
+  },
+
+  redIcon: {
+    color: '#000',
   }
 
 }));
