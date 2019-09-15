@@ -6,8 +6,8 @@ import {authSelectors} from '@reducers';
 import {connect} from 'react-redux';
 
 const GuestPath = ({ component: Component, ...rest }: { component: any }) => (
-  <Route {...rest} render={(props: { isAuthenticated: boolean }) => (
-    props.isAuthenticated
+  <Route {...rest} render={(props) => (
+    rest.isAuthenticated
       ? <GuestScreen {...props} />
       : <Component {...props} />
   )} />

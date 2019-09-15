@@ -2,14 +2,16 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-
+import {colors} from '@constants';
 
 const useStyles = makeStyles(theme => ({
   submit: {
+    background: colors.orange,
     margin: '0 15px',
     width: 'calc(100% - 30px)',
     borderRadius: '0px',
     textTransform: 'none',
+    fontSize: 'calc(0.5vw + 18px)',
   },
   bottom : {
     position: 'absolute',
@@ -18,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   loginForm: {
     width: '100%',
     margin: '0',
+    '&:hover': {
+      backgroundColor: colors.orange,
+    }
   }
 }));
 
@@ -28,9 +33,10 @@ const CustomButton = (props: Props) => {
     return (
         <Button
             type="submit"
-            variant="contained"
             color="primary"
+            variant="contained"
             size="large"
+            onClick={props.onClick}
             className={`${submit} ${props.className}`}
         >
             {props.text}
@@ -49,4 +55,5 @@ type Props = {
     bottom?: boolean,
     className?: string,
     inForm?: boolean,
+    onClick?: function,
 }

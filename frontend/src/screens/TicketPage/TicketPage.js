@@ -6,9 +6,12 @@ import {
   CssBaseline, TextField,
   FormHelperText
 } from '@material-ui/core';
-import {requestStatus} from '@constants';
+import { requestStatus } from '@constants';
 import { useLoginStyles } from '@util';
 import CustomButton from '@components/CustomButton/CustomButton';
+import { ticketActions } from '@actions';
+import { LoadingModal } from '@components/LoadingModal';
+
 
 const TicketPage = (props: Props) => {
 
@@ -18,6 +21,7 @@ const TicketPage = (props: Props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.submitTicketData(ticket);
   };
 
   useEffect(() => {
@@ -29,37 +33,46 @@ const TicketPage = (props: Props) => {
 
   return (
     <React.Fragment>
+      <LoadingModal open={props.requestStatus === requestStatus.PENDING}/>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer}>
           <Typography component="h1" variant="h4" className={classes.header}>
-            JOIN THE GAME
+            Ticket number
+          </Typography>
+          <Typography component="span" variant="span" className={classes.subheader}>
+            A game for PKP Intercity passengers.
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
-            <TextField
-              variant="filled"
-              margin="normal"
-              required
-              fullWidth
-              id="nickname"
-              label="Ticket number"
-              name="nickname"
-              autoComplete="nickname"
-              autoFocus
-              value={ticket}
-              onChange={(e) => setTicket(e.target.value)}
-              error={props.requestStatus === requestStatus.FAILURE}
-            />
+            <div className={classes.input__container}>
+              <TextField
+                variant="filled"
+                margin="normal"
+                required
+                fullWidth
+                id="nickname"
+                label="Ticket number"
+                name="nickname"
+                autoComplete="nickname"
+                autoFocus
+                value={ticket}
+                onChange={(e) => setTicket(e.target.value)}
+                error={props.requestStatus === requestStatus.FAILURE}
+              />
+            </div>
             {props.requestStatus === requestStatus.FAILURE && <FormHelperText
               error
               id="my-helper-text"
             >
               {(props.error && props.error.detail) || 'Ticket error'}
             </FormHelperText>}
-            <CustomButton
-              text="Enter the lobby"
-              inForm
-            />
+            <div className={classes.customSubmit}>
+              <CustomButton
+                text="Enter the lobby"
+                inForm
+              />
+            </div>
+            <hr className={classes.hr}/>
           </form>
         </div>
       </Container>
@@ -79,11 +92,11 @@ type Props = {
   },
 };
 
-const mapStateToProps = (state) => ({
-});
+const mapStateToProps = (state) => ({});
 
 
 const mapDispatchToProps = (dispatch) => ({
+  submitTicketData: (ticketNumber) => dispatch(ticketActions.submitTicketData(ticketNumber))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketPage);
