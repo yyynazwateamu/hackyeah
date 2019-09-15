@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
 import { authReducer } from './auth.reducer';
+import { questionsReducer } from './questions.reducer.js';
+export { authSelectors } from './auth.reducer';
+export { questionSelectors } from './questions.reducer';
 import { lobbyReducer } from './lobby.reducer';
 import { ticketReducer } from './ticket.reducer';
 import { userReducer } from './user.reducer';
@@ -9,6 +12,7 @@ export default combineReducers({
 	lobby: lobbyReducer,
 	ticket: ticketReducer,
 	user: userReducer,
+	questions: questionsReducer,
 });
 
 
