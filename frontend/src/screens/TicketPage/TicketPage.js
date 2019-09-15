@@ -13,7 +13,6 @@ import { ticketActions } from '@actions';
 import { ticketSelectors } from '@reducers';
 import { LoadingModal } from '@components/LoadingModal';
 
-
 const TicketPage = (props: Props) => {
 
   const classes = useLoginStyles();
@@ -27,7 +26,7 @@ const TicketPage = (props: Props) => {
 
   useEffect(() => {
     if (props.requestStatus === requestStatus.SUCCESS) {
-      props.history.push('/lobby/');
+      props.history.push('/lobby');
     }
   }, [props.requestStatus]);
 
