@@ -1,7 +1,11 @@
+import random
 import re
+import json
 
 import jwt
+from django.conf import settings
 from django.http import JsonResponse
+from django.utils import timezone
 from django.utils.crypto import get_random_string
 
 from geopy.distance import geodesic
@@ -48,7 +52,7 @@ class QuizViewSet(viewsets.GenericViewSet):
     permission_classes = (IsAuthenticated,)
 
     @staticmethod
-    def get_ordered_cities_by_distance(lat, lng):
+    def get_nearest_city(lat, lng):
         nearest_city = Train.cities[0]
         user_cords = (lat, lng)
         min_distance = None
@@ -59,23 +63,25 @@ class QuizViewSet(viewsets.GenericViewSet):
             city['distance'] = distance
             cities_with_distance.append(city)
 
-        return sorted(cities_with_distance, key=lambda x: x['distance'])
+        return sorted(cities_with_distance, key=lambda x: x['distance'])[0]
 
     @staticmethod
-    def create_token(user):
-        encoded = jwt.encode({'user_id': user.id}, get_random_string(30), algorithm='HS256')
+    def create_token(user, questions):
+        expiries_at = timezone.now() + timezone.timedelta(seconds=15)
+        encoded = jwt.encode({'data': [{
+            'user_id': user.id,
+            'question_id': question['id']} for question in questions]},
+            settings.SECRET_KEY, algorithm='HS256')
         return encoded.decode()
 
     @staticmethod
-    def check_token(token):
-        return True
+    def decode_token(token):
+        return jwt.decode(token, settings.SECRET_KEY, algorithm='HS256')
 
     @staticmethod
-    def get_question(ordered_cities):
-        for city in ordered_cities:
-            for question in questions:
-               if question['city'] == city:
-                   return question
+    def get_questions(nearest_city):
+        city_questions = list(filter(lambda x: x['city'] == nearest_city, questions))
+        return random.sample(city_questions, 5)
 
     @staticmethod
     def get_question_by_id(pk):
@@ -86,29 +92,32 @@ class QuizViewSet(viewsets.GenericViewSet):
     @action(methods=['GET', ], detail=False)
     def question(self, request):
         lat, lng = float(request.GET['lat']), float(request.GET['lng'])
-        ordered_cities = self.get_ordered_cities_by_distance(lat, lng)
-        question = self.get_question(ordered_cities)
-        return JsonResponse({
+        ordered_cities = self.get_nearest_city(lat, lng)
+        question = self.get_questions(ordered_cities)
+        return JsonResponse({"questions": [{
                              'question': question['question'],
                              'answers': question['answers'],
-                             'id': question['id'],
-                             'token': self.create_token(request.user)
-                            })
+                             'id': question['id']} for question in questions],
+                             'token': self.create_token(request.user, questions)
+        })
 
     @action(methods=['POST',], detail=False)
     def answer(self, request):
         pk = request.data.get('id')
-        self.check_token(request.data.get('token', ''))
+        token_data = self.decode_token(request.data['token'])
+        print(token_data)
         if not pk:
             return JsonResponse({'id': 'Provide valid id of question'}, status=400)
         question = self.get_question_by_id(pk)
-        user_answer = request.data.get('answer', 0)
+        if not {'user_id': request.user.id, 'question_id': question['id']} in token_data['data']:
+            return JsonResponse({'token': "Provide valid token"}, status=400)
+        user_answer = request.data.get('answer', -1)
         correct_answer = question['right_answer']
         user = request.user
         if user_answer == correct_answer:
             user.points += 1
             user.save()
-            return JsonResponse({'correct': True, 'points': user.points})
+            return JsonResponse({'correct': True, 'points': user.points, 'right_answer': correct_answer})
         return JsonResponse({'correct': False, 'points': user.points})
 
 
