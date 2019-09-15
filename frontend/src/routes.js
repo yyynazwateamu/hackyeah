@@ -2,11 +2,11 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { ProtectedPath, GuestPath, history } from '@util';
 import { LoginPage, LoginPageSplash, LoginPageGuest, SignUp,
-  SplashContainer, LobbyContainer, QuestionContainer, TicketPage, Leaderboard } from '@screens';
+  SplashPage, LobbyContainer, QuestionContainer, TicketPage, Leaderboard  } from '@screens';
 
 const Routes = () => (
   <Router history={history}>
-    <GuestPath exact path='/' component={SplashContainer} />
+    <GuestPath exact path='/' component={SplashPage} />
     <GuestPath path='/start' component={LoginPageSplash} />
     <GuestPath path='/login' component={LoginPage} />
     <GuestPath path='/loginGuest' component={LoginPageGuest} />

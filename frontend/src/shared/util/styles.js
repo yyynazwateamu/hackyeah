@@ -47,6 +47,7 @@ export const useLoginStyles = makeStyles(theme => ({
     width:'70%',
     textAlign:'center',
     marginTop:'20px',
+    animation: 'changeOpacity 2s linear forwards',
   },
 
 }));
