@@ -42,7 +42,7 @@ export default function LeaderboardTable({ rows }) {
             rows.map(row => (
               <TableRow key={row.name} className={classes.tableRow}>
                 <TableCell component="th" scope="row">{row.name}</TableCell>
-                <TableCell align="right">{row.readyIcon}</TableCell>
+                <TableCell align="right">{row.points}</TableCell>
               </TableRow>
             ))
           }

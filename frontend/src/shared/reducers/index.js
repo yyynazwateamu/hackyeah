@@ -3,6 +3,7 @@ import { authReducer } from './auth.reducer';
 import { lobbyReducer } from './lobby.reducer';
 import { ticketReducer } from './ticket.reducer';
 import { userReducer } from './user.reducer';
+import { leaderboardReducer } from './leaderboard.reducer';
 import { questionsReducer } from './questions.reducer.js';
 
 export default combineReducers({
@@ -11,6 +12,7 @@ export default combineReducers({
 	ticket: ticketReducer,
 	user: userReducer,
 	questions: questionsReducer,
+	leaderboard: leaderboardReducer,
 });
 
 export { authSelectors } from './auth.reducer';
