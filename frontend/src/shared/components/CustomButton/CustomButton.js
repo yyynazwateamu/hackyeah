@@ -36,6 +36,7 @@ const CustomButton = (props: Props) => {
             color="primary"
             variant="contained"
             size="large"
+            onClick={props.onClick}
             className={`${submit} ${props.className}`}
         >
             {props.text}
@@ -54,4 +55,5 @@ type Props = {
     bottom?: boolean,
     className?: string,
     inForm?: boolean,
+    onClick?: function,
 }

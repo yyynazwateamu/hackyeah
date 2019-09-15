@@ -10,6 +10,11 @@ const getLobbyData = () => {
 		});
 };
 
+const setReadyStatus = (isReady) => {
+	return Promise.resolve({ success: true });
+};
+
 export const lobbyService = {
-	getLobbyData
+	getLobbyData,
+	setReadyStatus
 };

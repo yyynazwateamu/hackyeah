@@ -1,7 +1,7 @@
 import { lobbyConstants, requestStatus } from '@constants';
 
 const initialState = {
-	status: requestStatus.PENDING,
+	status: requestStatus.IDLE,
 };
 
 export function lobbyReducer(state = initialState, action) {
@@ -13,7 +13,7 @@ export function lobbyReducer(state = initialState, action) {
 	case lobbyConstants.FETCH_DATA_FAILURE:
 		return { ...state, status: requestStatus.FAILURE };
 	default:
-		return initialState;
+		return state;
 	}
 }
 
