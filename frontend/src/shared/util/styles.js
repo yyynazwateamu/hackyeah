@@ -47,6 +47,14 @@ export const useLoginStyles = makeStyles(theme => ({
     width:'70%',
     textAlign:'center',
     marginTop:'20px',
+  },
+
+  greenIcon: {
+    color: '#000',
+  },
+
+  redIcon: {
+    color: '#000',
   }
 
 }));
