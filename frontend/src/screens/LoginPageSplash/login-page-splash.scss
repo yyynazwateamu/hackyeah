@@ -1,8 +1,11 @@
 .upper-img {
-  max-height: 40%;
-  width: 100%;
-  margin: auto;
+  height: 50%;
+  width: 50%;
+  margin-top: 150px;
+  margin-left:auto;
+  margin-right:auto;
   display: block;
+  animation: changeOpacity 2s linear forwards;
 }
 
 .header {
@@ -12,11 +15,12 @@
   align-items: center;
   margin-top: 30px;
   max-width: 444px;
+  .train-header {
+    width: 90%;
+  }
 }
 
-.train-header {
-  width: 90% !important;
-}
+
 
 .login {
   display: flex;
@@ -32,7 +36,8 @@
   .login__button {
     width: 100%;
     font-size: 0.9375rem;
-    border-radius: 0px;
+    border-radius: 0;
+    animation: changeOpacity 2s linear forwards;
 
     &.login__button-orange {
       background: #FF6319;
@@ -59,7 +64,24 @@
   background-color: #EDEDED;
   position: absolute;
   z-index: -1;
-  top: 55vh;
+  top: 70vh;
+  bottom: -50px;
+  @media (min-width: 330px) {
+    top: 65vh;
+    bottom: -15px;
+  }
+  @media (min-width: 400px) {
+    top: 60vh;
+    bottom:0;
+  }
   left: 0;
-  bottom: 0;
+}
+
+@keyframes changeOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
