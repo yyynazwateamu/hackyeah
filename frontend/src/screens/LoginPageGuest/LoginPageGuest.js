@@ -9,8 +9,8 @@ import {
 import {authSelectors} from '@reducers';
 import {authActions} from '@actions';
 import {requestStatus} from '@constants';
-import { useLoginStyles } from '@util';
-import { CustomButton } from '@components';
+import {useLoginStyles} from '@util';
+import {CustomButton, LoadingModal} from '@components';
 
 const LoginPageGuest = (props: Props) => {
 
@@ -32,46 +32,53 @@ const LoginPageGuest = (props: Props) => {
 
   return (
     <React.Fragment>
-      {props.requestStatus === requestStatus.PENDING && <div>laduje</div>}
+      <LoadingModal open={props.requestStatus === requestStatus.PENDING}/>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
         <div className={classes.formContainer}>
           <Typography component="h1" variant="h4" className={classes.header}>
-            JOIN THE GAME
+            Username
+          </Typography>
+          <Typography component="span" variant="span" className={classes.subheader}>
+            A game for PKP Intercity passengers.
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
-            <TextField
-              variant="filled"
-              margin="normal"
-              required
-              fullWidth
-              id="nickname"
-              label="Username"
-              name="nickname"
-              autoComplete="nickname"
-              autoFocus
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              error={props.requestStatus === requestStatus.FAILURE}
-            />
-            {props.requestStatus === requestStatus.FAILURE && <FormHelperText
+            <div className={classes.input__container}>
+              <TextField
+                variant="filled"
+                margin="normal"
+                required
+                fullWidth
+                id="nickname"
+                label="Username"
+                name="nickname"
+                autoComplete="nickname"
+                autoFocus
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                error={props.requestStatus === requestStatus.FAILURE}
+              />
+            </div>
+            {props.requestStatus === requestStatus.FAILURE && <div className={classes.input__container}><FormHelperText
               error
               id="my-helper-text"
             >
               {(props.error && props.error.detail) || 'Loging error'}
-            </FormHelperText>}
-            <CustomButton
-              text="Log in as a guest"
-              inForm
-            >
-            </CustomButton>
-            <Grid container>
+            </FormHelperText></div>}
+            <div className={classes.customSubmit}>
+              <CustomButton
+                text="Log in as a guest"
+                inForm
+              />
+            </div>
+            <Grid container className={classes.links}>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Check why it is worth to sign up here
                 </Link>
               </Grid>
             </Grid>
+            <hr className={classes.hr}/>
           </form>
         </div>
       </Container>

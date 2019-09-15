@@ -1,16 +1,16 @@
 //@flow
 import React, {useState, useEffect} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
   Container, Typography,
   CssBaseline, TextField, Grid, Link, FormHelperText
 
 } from '@material-ui/core';
-import { authSelectors } from '@reducers';
-import { authActions } from '@actions';
-import { requestStatus } from '@constants';
-import { useLoginStyles } from '@util';
-import { CustomButton, LoadingModal } from '@components';
+import {authSelectors} from '@reducers';
+import {authActions} from '@actions';
+import {requestStatus} from '@constants';
+import {useLoginStyles} from '@util';
+import {CustomButton, LoadingModal} from '@components';
 
 const LoginPage = (props: Props) => {
 
@@ -25,7 +25,7 @@ const LoginPage = (props: Props) => {
   };
 
   useEffect(() => {
-    if ( props.requestStatus === requestStatus.SUCCESS ) {
+    if (props.requestStatus === requestStatus.SUCCESS) {
       props.history.push('/ticket');
     }
   }, [props.requestStatus]);
@@ -33,64 +33,74 @@ const LoginPage = (props: Props) => {
 
   return (
     <React.Fragment>
-      <LoadingModal open={props.requestStatus === requestStatus.PENDING} />
+      <LoadingModal open={props.requestStatus === requestStatus.PENDING}/>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
-        <div className={classes.formContainer} >
-          <Typography component="h1" variant="h4" className={classes.header} >
-            LOG IN
+        <div className={classes.formContainer}>
+          <Typography component="h1" variant="h4" className={classes.header}>
+            Log in
+          </Typography>
+          <Typography component="span" variant="span" className={classes.subheader}>
+            A game for PKP Intercity passengers.
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
-            <TextField
-              variant="filled"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Username"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              error={props.requestStatus === requestStatus.FAILURE}
-            />
-            <TextField
-              variant="filled"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              error={props.requestStatus === requestStatus.FAILURE}
-            />
-            {props.requestStatus === requestStatus.FAILURE && <FormHelperText
+            <div className={classes.input__container}>
+              <TextField
+                variant="filled"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Username"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                error={props.requestStatus === requestStatus.FAILURE}
+              />
+            </div>
+            <div className={classes.input__container}>
+              <TextField
+                variant="filled"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                error={props.requestStatus === requestStatus.FAILURE}
+              />
+            </div>
+            {props.requestStatus === requestStatus.FAILURE && <div className={classes.input__container}><FormHelperText
               error
               id="my-helper-text"
             >
               {(props.error && props.error.detail) || 'Loging error'}
-            </FormHelperText>}
-            <CustomButton
-              text="Log in"
-              inForm
-            />
-            <Grid container>
+            </FormHelperText></div>}
+            <div className={classes.customSubmit}>
+              <CustomButton
+                text="Log in"
+                inForm
+              />
+            </div>
+            <Grid container className={classes.links}>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot your password?
                 </Link>
               </Grid>
-              <Grid item xs className={classes.register}>
-                <Link href={'/signup'} variant="body2">
-                  Do not have an account? Register here!
-                </Link>
-              </Grid>
+              {/*<Grid item xs className={classes.register}>*/}
+              {/*  <Link href={'/signup'} variant="body2">*/}
+              {/*    Do not have an account? Register here!*/}
+              {/*  </Link>*/}
+              {/*</Grid>*/}
             </Grid>
+            <hr className={classes.hr}/>
           </form>
         </div>
       </Container>
