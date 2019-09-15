@@ -13,6 +13,20 @@ const getLobbyData = () => dispatch => {
 		});
 };
 
+const setReadyStatus = () => dispatch => {
+	dispatch({ type: lobbyConstants.SET_READY_STATUS_REQUEST });
+
+	lobbyService.setReadyStatus()
+		.then(data => {
+			dispatch({ type: lobbyConstants.SET_READY_STATUS_SUCCESS });
+			dispatch(getLobbyData());
+		})
+		.catch(error => {
+			dispatch({ type: lobbyConstants.SET_READY_STATUS_FAILURE });
+		});
+};
+
 export const lobbyActions = {
-	getLobbyData
+	getLobbyData,
+	setReadyStatus,
 };

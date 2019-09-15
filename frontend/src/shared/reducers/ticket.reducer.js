@@ -6,14 +6,14 @@ const initialState = {
 
 export function ticketReducer(state = initialState, action) {
 	switch (action.type) {
-	case ticketConstants.FETCH_DATA_REQUEST:
+	case ticketConstants.SUBMIT_DATA_REQUEST:
 		return { ...state, status: requestStatus.PENDING };
-	case ticketConstants.FETCH_DATA_SUCCESS:
-		return { ...state, status: requestStatus.SUCCESS };
-	case ticketConstants.FETCH_DATA_FAILURE:
-		return { ...state, status: requestStatus.FAILURE };
+	case ticketConstants.SUBMIT_DATA_SUCCESS:
+		return { ...state, status: requestStatus.SUCCESS, ticketNumber: action.payload.ticket_number };
+	case ticketConstants.SUBMIT_DATA_FAILURE:
+		return { ...state, status: requestStatus.FAILURE, error: action.error };
 	default:
-		return initialState;
+		return state;
 	}
 }
 

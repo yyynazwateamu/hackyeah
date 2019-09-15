@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CustomAppBar from '@components/CustomAppBar/CustomAppBar';
 import LobbyTable from './LobbyTable';
 import CustomButton from '@components/CustomButton/CustomButton';
-import { lobbyActions } from '@actions';
+import { lobbyActions, userActions } from '@actions';
 import { lobbySelectors } from '@reducers';
 import CheckIcon from '@material-ui/icons/Check';
 import DotLoader from '@assets/icons/dot-loader.svg';
@@ -14,11 +14,13 @@ const options = [
 
 const LobbyContainer = (props: Props) => {
 
+  const { users } = props;
+
   useEffect(() => {
     props.getLobbyData();
+    const interval = setInterval(() => props.getLobbyData(), 5000);
+    return () => clearInterval(interval);
   }, []);
-
-  const { users } = props;
 
   const rows = users && users.map(user => ({ name: user.name, readyIcon: (user.ready ? <CheckIcon /> : <img src={DotLoader} />) }));
   const userCount = users && {
@@ -30,7 +32,7 @@ const LobbyContainer = (props: Props) => {
     <div >
         <CustomAppBar title="Lobby" options={options} path={'/'} history={props.history} />
         <LobbyTable rows={rows} />
-        <CustomButton text={'Gotowość ' + (userCount && `${userCount.ready}/${userCount.total}`)} bottom />
+        <CustomButton text={'Gotowość ' + (userCount && `${userCount.ready}/${userCount.total}`)} bottom onClick={() => { console.log('click'); props.setReadyStatus(); }}/>
     </div>
   );
 };
@@ -40,6 +42,8 @@ type Props = {
   title: string,
   users: Array<object>,
   getLobbyData: () => void,
+  setReadyStatus: () => void,
+  getUserDetails: () => void,
 }
 
 const mapStateToProps = (state) => ({
@@ -49,6 +53,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getLobbyData: () => dispatch(lobbyActions.getLobbyData()),
+  setReadyStatus: () => dispatch(lobbyActions.setReadyStatus()),
+  getUserDetails: () => dispatch(userActions.getUserDetails()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LobbyContainer);
