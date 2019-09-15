@@ -84,6 +84,7 @@ WEBPACK_LOADER = {
     }
 }
 DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'accounts/users/reset_password_confirm/{uid}/{token}',
     'SERIALIZERS': {
         'current_user': 'accounts.serializers.UserSerializer',
     }
@@ -113,6 +114,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

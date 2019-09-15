@@ -1,6 +1,9 @@
 import re
 
+import jwt
 from django.http import JsonResponse
+from django.utils.crypto import get_random_string
+
 from geopy.distance import geodesic
 
 # Create your views here.
@@ -30,7 +33,7 @@ class LobbyViewSet(mixins.ListModelMixin,
                 },
                 {
                  'name': 'Kasia',
-                 'ready': False
+                 'ready': True
                 },
                 {
                  'name': 'Jan',
@@ -59,6 +62,15 @@ class QuizViewSet(viewsets.GenericViewSet):
         return sorted(cities_with_distance, key=lambda x: x['distance'])
 
     @staticmethod
+    def create_token(user):
+        encoded = jwt.encode({'user_id': user.id}, get_random_string(30), algorithm='HS256')
+        return encoded.decode()
+
+    @staticmethod
+    def check_token(token):
+        return True
+
+    @staticmethod
     def get_question(ordered_cities):
         for city in ordered_cities:
             for question in questions:
@@ -79,12 +91,14 @@ class QuizViewSet(viewsets.GenericViewSet):
         return JsonResponse({
                              'question': question['question'],
                              'answers': question['answers'],
-                             'id': question['id']
+                             'id': question['id'],
+                             'token': self.create_token(request.user)
                             })
 
     @action(methods=['POST',], detail=False)
     def answer(self, request):
         pk = request.data.get('id')
+        self.check_token(request.data.get('token', ''))
         if not pk:
             return JsonResponse({'id': 'Provide valid id of question'}, status=400)
         question = self.get_question_by_id(pk)
