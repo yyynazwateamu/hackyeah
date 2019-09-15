@@ -10,13 +10,9 @@ import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import './lobby-container.scss';
 
-import { quizService } from '@services';
-
 const options = [
   'Zgłoś',
 ];
-
-
 
 const LobbyContainer = (props: Props) => {
 
@@ -25,7 +21,6 @@ const LobbyContainer = (props: Props) => {
 
   useEffect(() => {
     props.getLobbyData();
-    quizService.getQuestion();
     const interval = setInterval(() => props.getLobbyData(), 5000);
     return () => clearInterval(interval);
   }, []);

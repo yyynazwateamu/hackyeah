@@ -15,7 +15,9 @@ export default function QuestionContainer(props: Props) {
         <div className={classes.questionButton}>
             <QuestionButton 
                 text={props.questions.answers[0]} 
-                index={0} 
+                index={0}
+                token={token}
+                questionNumber={props.questionNumber}
                 rightAnswer={props.questions.rightAnswer} 
                 sendAnswer={props.sendAnswer}
                 disabled={props.disabled}
@@ -25,7 +27,9 @@ export default function QuestionContainer(props: Props) {
         <div className={classes.questionButton}>
             <QuestionButton 
                 text={props.questions.answers[1]} 
-                index={1} 
+                index={1}
+                token={token}
+                questionNumber={props.questionNumber}
                 rightAnswer={props.questions.rightAnswer} 
                 sendAnswer={props.sendAnswer} 
                 disabled={props.disabled}
@@ -34,9 +38,11 @@ export default function QuestionContainer(props: Props) {
         </div>
         <div className={classes.questionButton}>
             <QuestionButton 
-                text={props.questions.answers[2]} 
-                index={2} 
-                rightAnswer={props.questions.rightAnswer} 
+                text={props.questions.answers[2]}
+                index={2}
+                token={token}
+                questionNumber={props.questionNumber}
+                rightAnswer={props.questions.rightAnswer}
                 sendAnswer={props.sendAnswer} 
                 disabled={props.disabled}
                 answerStatus={props.answerStatus}
@@ -45,7 +51,9 @@ export default function QuestionContainer(props: Props) {
         <div className={classes.questionButton}>
             <QuestionButton 
                 text={props.questions.answers[3]} 
-                index={3} 
+                index={3}
+                token={token}
+                questionID={props.questions.id}
                 rightAnswer={props.questions.rightAnswer} 
                 sendAnswer={props.sendAnswer}
                 disabled={props.disabled}

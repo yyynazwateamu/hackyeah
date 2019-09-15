@@ -10,14 +10,11 @@ export default combineReducers({
 	lobby: lobbyReducer,
 	ticket: ticketReducer,
 	user: userReducer,
-	quiz: quizReducer,
 	questions: questionsReducer,
 });
-
 
 export { authSelectors } from './auth.reducer';
 export { lobbySelectors } from './lobby.reducer';
 export { ticketSelectors } from './ticket.reducer';
 export { userSelectors } from './user.reducer';
 export { questionSelectors } from './questions.reducer';
-export { quizSelectors } from './quiz.reducer';

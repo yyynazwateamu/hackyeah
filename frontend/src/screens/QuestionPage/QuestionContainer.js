@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import CustomAppBar from '@components/CustomAppBar/CustomAppBar';
 import colors from '@constants/colors';
 import QuestionList from './QuestionList';
 import { questionsActions } from '@actions';
+import { questionSelectors } from '@reducers';
 
 // const questions = [
 //     {
@@ -72,20 +73,24 @@ function QuestionContainer(props: Props) {
         <h2 className={classes.question}>{props.questions[props.questionNumber].question} </h2>
         <h4 className={`${classes.question} ${time<6 ? classes.wrong : ''}`}>{`${Math.floor(time/60)}:${time-(Math.floor(time/60)*60)}`}</h4>
         <QuestionList 
-            questions={props.questions[props.questionNumber]} 
+            questions={props.questions[props.questionNumber]}
+            questionNumber={props.questionNumber}
             sendAnswer={props.checkAnswer} 
             clicked={props.index} 
-            disabled={props.disabled}/>
+            disabled={props.disabled}
+            token={token}
+        />
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({
-    questionNumber: state.questions.questionNumber,
-    disabled: state.questions.disabled,
-    index: state.questions.index,
-    questions: state.questions.questions,
-})
+    questionNumber: questionSelectors.getQuestionNumber(state),
+    disabled: questionSelectors.getDisabled(state),
+    index: questionSelectors.getIndex(state),
+    questions: questionSelectors.getQuestions(state),
+    token: questionSelectors.getToken(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
     changeQuestion: () => dispatch(questionsActions.changeQuestionNumber()),
