@@ -1,7 +1,7 @@
 import { ticketConstants, requestStatus } from '@constants';
 
 const initialState = {
-	status: requestStatus.PENDING,
+	status: requestStatus.IDLE,
 };
 
 export function ticketReducer(state = initialState, action) {
@@ -18,5 +18,6 @@ export function ticketReducer(state = initialState, action) {
 }
 
 export const ticketSelectors = {
-
+	getStatus: state => state.ticket.status,
+	getError: state => state.ticket.error,
 };

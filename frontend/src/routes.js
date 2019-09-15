@@ -13,7 +13,7 @@ const Routes = () => (
     <GuestPath path='/loginGuest' component={LoginPageGuest} />
     <GuestPath path='/signup' component={SignUp} />
     <GuestPath path='/question' component={QuestionContainer} />
-    <ProtectedPath path='/ticket' component={TicketPage} />
+    <GuestPath path='/ticket' component={TicketPage} />
   </Router>
 );
 

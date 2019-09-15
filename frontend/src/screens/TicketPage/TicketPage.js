@@ -10,6 +10,7 @@ import { requestStatus } from '@constants';
 import { useLoginStyles } from '@util';
 import CustomButton from '@components/CustomButton/CustomButton';
 import { ticketActions } from '@actions';
+import { ticketSelectors } from '@reducers';
 import { LoadingModal } from '@components/LoadingModal';
 
 
@@ -26,7 +27,7 @@ const TicketPage = (props: Props) => {
 
   useEffect(() => {
     if (props.requestStatus === requestStatus.SUCCESS) {
-      props.history.push('/ticket');
+      props.history.push('/lobby/');
     }
   }, [props.requestStatus]);
 
@@ -86,13 +87,16 @@ type Props = {
     detail: string,
   },
   requestStatus: string,
-  sendTicket: (password: string) => void,
+  submitTicketData: (password: string) => void,
   history: {
     push: () => void,
   },
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  requestStatus: ticketSelectors.getStatus(state),
+  error: ticketSelectors.getError(state),
+});
 
 
 const mapDispatchToProps = (dispatch) => ({
