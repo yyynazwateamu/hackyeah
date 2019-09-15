@@ -4,4 +4,5 @@ export { ticketConstants } from './ticket.constants';
 export { userConstants } from './user.constants';
 export { requestStatus } from './requestStatus.constants';
 export { questionsConstants } from './questions.constants';
+export { leaderboardConstants } from './leaderboard.constants';
 export colors from './colors';
