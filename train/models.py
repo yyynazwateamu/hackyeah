@@ -30,7 +30,9 @@ class Train(models.Model):
     CITY_WARSZAWA = {'name': 'Warszawa', 'lat': 52.232855, "lng": 20.9211111}
     CITY_WROCLAW = {'name': 'Wrocław', 'lat': 51.1269942, "lng": 16.8517807}
     CITY_KATOWICE = {'name': 'Katowice', 'lat': 50.2135882, "lng": 18.8671093}
-    cities = [CITY_KRAKOW, CITY_GDYNIA, CITY_POZNAN, CITY_WARSZAWA, CITY_WROCLAW, CITY_KATOWICE]
+    CITY_KIELCE = {'name': 'Kielce', 'lat': 50.854019, "lng": 20.5456016}
+    CITY_RANDOM = {'name': 'Radom', 'lat': 51.4150447, "lng": 21.0839342}
+    cities = [CITY_KRAKOW, CITY_GDYNIA, CITY_POZNAN, CITY_WARSZAWA, CITY_WROCLAW, CITY_KATOWICE, CITY_KIELCE]
     CITY_CHOICES = (
         ('Kraków', 'Gdynia'),
         ('Poznań', 'Warszawa'),
