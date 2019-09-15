@@ -14,8 +14,6 @@ const options = [
   'Zgłoś',
 ];
 
-
-
 const LobbyContainer = (props: Props) => {
 
 
