@@ -6,9 +6,10 @@ import {
   CssBaseline, TextField,
   FormHelperText
 } from '@material-ui/core';
-import {requestStatus} from '@constants';
+import { requestStatus } from '@constants';
 import { useLoginStyles } from '@util';
 import CustomButton from '@components/CustomButton/CustomButton';
+import { ticketActions } from '@actions';
 
 const TicketPage = (props: Props) => {
 
@@ -18,6 +19,7 @@ const TicketPage = (props: Props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.submitTicketData(ticket);
   };
 
   useEffect(() => {
@@ -84,6 +86,7 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
+  submitTicketData: (ticketNumber) => dispatch(ticketActions.submitTicketData(ticketNumber))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketPage);

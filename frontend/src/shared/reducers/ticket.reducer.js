@@ -1,22 +1,22 @@
-import { lobbyConstants, requestStatus } from '@constants';
+import { ticketConstants, requestStatus } from '@constants';
 
 const initialState = {
 	status: requestStatus.PENDING,
 };
 
-export function lobbyReducer(state = initialState, action) {
+export function ticketReducer(state = initialState, action) {
 	switch (action.type) {
-	case lobbyConstants.FETCH_DATA_REQUEST:
+	case ticketConstants.FETCH_DATA_REQUEST:
 		return { ...state, status: requestStatus.PENDING };
-	case lobbyConstants.FETCH_DATA_SUCCESS:
+	case ticketConstants.FETCH_DATA_SUCCESS:
 		return { ...state, status: requestStatus.SUCCESS };
-	case lobbyConstants.FETCH_DATA_FAILURE:
+	case ticketConstants.FETCH_DATA_FAILURE:
 		return { ...state, status: requestStatus.FAILURE };
 	default:
 		return initialState;
 	}
 }
 
-export const lobbySelectors = {
+export const ticketSelectors = {
 
 };
