@@ -11,7 +11,13 @@ const getLobbyData = () => {
 };
 
 const setReadyStatus = (isReady) => {
-	return Promise.resolve({ success: true });
+	return fetchWrapper.POST('/accounts/users/me/status/', { ready: isReady })
+		.then(response => {
+			return response.data;
+		})
+		.catch(error => {
+			throw error;
+		});
 };
 
 export const lobbyService = {
