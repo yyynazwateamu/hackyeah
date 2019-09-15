@@ -30,8 +30,17 @@ const logout = () => {
 	JWTUtils.deleteJWT();
 };
 
+const signUp = (user) => fetchWrapper.POST('/accounts/users/', { ...user })
+	.then(response => {
+		return response;
+	})
+	.catch(error => {
+		const { response: { data: { username: [ detail ] }, status: code } } = error;
+		throw { code, detail };
+	});
 export const authService = {
 	loginWithAccount,
 	loginWithoutAccount,
 	logout,
+	signUp,
 };
