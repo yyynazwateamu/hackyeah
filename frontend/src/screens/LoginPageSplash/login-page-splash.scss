@@ -14,6 +14,10 @@
   max-width: 444px;
 }
 
+.train-header {
+  width: 90% !important;
+}
+
 .login {
   display: flex;
   flex-wrap: wrap;
@@ -28,6 +32,7 @@
   .login__button {
     width: 100%;
     font-size: 0.9375rem;
+    border-radius: 0px;
 
     &.login__button-orange {
       background: #FF6319;
@@ -47,4 +52,14 @@
   .login__info, .login__title, .login__button{
     margin: 5px auto;
   }
+}
+
+.button-container {
+  width: 100%;
+  background-color: #EDEDED;
+  position: absolute;
+  z-index: -1;
+  top: 55vh;
+  left: 0;
+  bottom: 0;
 }
