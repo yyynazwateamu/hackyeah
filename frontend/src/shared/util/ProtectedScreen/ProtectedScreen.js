@@ -1,14 +1,13 @@
 //@flow
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
+
+let redirect = null;
 
 const ProtectedScreen = (props: Props) => {
 
-  const [redirect, setRedirect] = useState(null);
-
   useEffect(() => {
-    let timeout = setTimeout(() => props.history.push('/start'),
+    redirect = setTimeout(() => props.history.push('/start'),
       3000);
-    setRedirect(timeout);
 
     return () => {
       clearTimeout(redirect);

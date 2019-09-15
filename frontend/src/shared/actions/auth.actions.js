@@ -1,5 +1,6 @@
 import { authConstants } from '@constants';
 import { authService } from '@services';
+import { history } from '@util';
 
 const loginWithAccount = (username, password) => dispatch => {
 	dispatch({ type: authConstants.LOGIN_WITH_ACCOUNT_REQUEST });
@@ -7,6 +8,7 @@ const loginWithAccount = (username, password) => dispatch => {
 	authService.loginWithAccount(username, password)
 		.then(token => {
 			dispatch({ type: authConstants.LOGIN_WITH_ACCOUNT_SUCCESS, payload: { token } });
+			history.push('/ticket');
 		})
 		.catch(error => {
 			dispatch({ type: authConstants.LOGIN_WITH_ACCOUNT_FAILURE, error: { ...error } });

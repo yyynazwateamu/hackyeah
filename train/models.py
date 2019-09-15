@@ -24,6 +24,13 @@ class Train(models.Model):
         ('IC', 'ic'),
         ('TLK', 'tlk'),
     )
+    CITY_KRAKOW = {'name': 'Kraków', 'lat': 50.06465, "lng": 19.94498}
+    CITY_GDYNIA = {'name': 'Gdynia', 'lat': 54.5374391, "lng": 18.441504}
+    CITY_POZNAN = {'name': 'Poznań', 'lat': 52.4004458, "lng": 16.7615829}
+    CITY_WARSZAWA = {'name': 'Warszawa', 'lat': 52.232855, "lng": 20.9211111}
+    CITY_WROCLAW = {'name': 'Wrocław', 'lat': 51.1269942, "lng": 16.8517807}
+    CITY_KATOWICE = {'name': 'Katowice', 'lat': 50.2135882, "lng": 18.8671093}
+    cities = [CITY_KRAKOW, CITY_GDYNIA, CITY_POZNAN, CITY_WARSZAWA, CITY_WROCLAW, CITY_KATOWICE]
     CITY_CHOICES = (
         ('Kraków', 'Gdynia'),
         ('Poznań', 'Warszawa'),

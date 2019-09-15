@@ -11,19 +11,42 @@ export const useLoginStyles = makeStyles(theme => ({
 
   header: {
     textAlign: 'center',
-    width: '80%',
+    width: '70%',
     borderBottom: '1px solid #aaa',
-    paddingBottom: '5px',
+    paddingBottom: '2px',
+    fontSize: '28px !important',
+    fontWeight: 'bold !important',
+    fontFamily: '"IBM Plex Sans", sans-serif !important',
+  },
+
+  subheader: {
+    paddingTop: '10px',
+    fontSize: '16px',
+    fontFamily: '"Roboto", sans-serif',
+    fontWeight: 300,
   },
 
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(9),
   },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
+  input__container: {
+    marginBottom: theme.spacing(2),
   },
+
+  customSubmit: {
+    marginBottom: theme.spacing(1.5),
+    marginTop: theme.spacing(3),
+  },
+
   register: {
     textAlign: 'right',
+  },
+
+  hr: {
+    width:'70%',
+    textAlign:'center',
+    marginTop:'20px',
   }
+
 }));
