@@ -17,7 +17,7 @@ const LoadingModal = ({ open }: { open: boolean }) => {
 	const classes = useStyles();
 
 	return (
-		<Modal open={open}>
+		<Modal open={open} disableAutoFocus disableEnforceFocus >
 			<div className={classes.spinner}>
 				<CircularProgress color="secondary"/>
 			</div>
