@@ -14,6 +14,7 @@ from geopy.distance import geodesic
 from rest_framework import viewsets, mixins
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 from game.fixtures import questions
 from train.models import Train
@@ -29,7 +30,7 @@ class LobbyViewSet(mixins.ListModelMixin,
         train = Train.get_train_by_ticket_number(ticket_number)
         return JsonResponse({
             'id': train.id,
-            'title': f'(Train {train.type} {ticket_number} from {train.departure_city} to {train.arrival_city})',
+            'title': f'Train {train.type} {ticket_number} from {train.departure_city} to {train.arrival_city}',
             'users': [
                 {
                   'name': request.user.username,
@@ -42,6 +43,32 @@ class LobbyViewSet(mixins.ListModelMixin,
                 {
                  'name': 'Jan',
                  'ready': True
+                }
+            ]
+        })
+
+
+class LeaderBoard(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        ticket_number = request.user.ticket_number
+        train = Train.get_train_by_ticket_number(ticket_number)
+        return JsonResponse({
+            'id': train.id,
+            'title': f'(Train {train.type} {ticket_number} from {train.departure_city} to {train.arrival_city})',
+            'users': [
+                {
+                  'name': request.user.username,
+                  'points': request.user.points
+                },
+                {
+                 'name': 'Kasia',
+                 'points': 2
+                },
+                {
+                 'name': 'Jan',
+                 'points': 0
                 }
             ]
         })
@@ -119,5 +146,3 @@ class QuizViewSet(viewsets.GenericViewSet):
             user.save()
             return JsonResponse({'correct': True, 'points': user.points, 'right_answer': correct_answer})
         return JsonResponse({'correct': False, 'points': user.points})
-
-

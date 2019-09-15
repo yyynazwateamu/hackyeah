@@ -6,7 +6,6 @@ const submitTicketData = ticketNumber => dispatch => {
 
 	ticketService.submitTicketData(ticketNumber)
 		.then(data => {
-			console.log(data);
 			dispatch({ type: ticketConstants.SUBMIT_DATA_SUCCESS, payload: { ...data } });
 		})
 		.catch(error => {

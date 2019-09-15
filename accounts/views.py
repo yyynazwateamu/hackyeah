@@ -42,6 +42,8 @@ class UserLobbyView(viewsets.GenericViewSet):
             return JsonResponse({"ticket_number": ['Provide valid ticket number',]}, status=400)
         user = request.user
         user.ticket_number = ticket_number
+        user.ready = False
+        user.points = 0
         user.save()
         return JsonResponse(UserSerializer(request.user).data)
 
