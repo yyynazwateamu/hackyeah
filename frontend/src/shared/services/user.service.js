@@ -1,13 +1,11 @@
 import { fetchWrapper } from '@util';
 
 const getUserDetails = () => {
-	return fetchWrapper.GET('/account/users/me/')
+	return fetchWrapper.GET('/accounts/users/me/')
 		.then(response => {
-			console.log(response);
 			return response.data;
 		})
-		.then(error => {
-			console.log(error);
+		.catch(error => {
 			throw error;
 		});
 };
