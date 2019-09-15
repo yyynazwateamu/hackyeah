@@ -19,8 +19,4 @@ export { authSelectors } from './auth.reducer';
 export { lobbySelectors } from './lobby.reducer';
 export { ticketSelectors } from './ticket.reducer';
 export { userSelectors } from './user.reducer';
-<<<<<<< HEAD
-export { leaderboardSelectors } from './leaderboard.reducer';
-=======
 export { questionSelectors } from './questions.reducer';
->>>>>>> master
