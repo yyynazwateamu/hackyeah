@@ -57,6 +57,11 @@ const useStyles = makeStyles(theme => ({
 function QuestionContainer(props: Props) {
     const [time, setTime] = useState(15);
     const classes = useStyles();
+
+    useEffect(() => {
+      props.getQuestions();
+    }, []);
+
     useEffect(() => {
         if(time===0) {
             props.changeQuestion();
@@ -65,21 +70,29 @@ function QuestionContainer(props: Props) {
             return setTime(15);
         }
         setTimeout(() => setTime(time-1), 1000);
-    }, [time]); 
+    }, [time]);
+
   return (
     <div >
-        <CustomAppBar title={`Question ${props.questionNumber+1}/5`} options={options} path={'/'} history={props.history} />
-        <img className={classes.img} src='https://via.placeholder.com/400x200' />
-        <h2 className={classes.question}>{props.questions[props.questionNumber].question} </h2>
-        <h4 className={`${classes.question} ${time<6 ? classes.wrong : ''}`}>{`${Math.floor(time/60)}:${time-(Math.floor(time/60)*60)}`}</h4>
-        <QuestionList 
+      <CustomAppBar title={`Question ${props.questionNumber+1}/5`} options={options} path={'/'} history={props.history} />
+      {
+        props.questions &&
+        <React.Fragment>
+          <img className={classes.img} src='https://via.placeholder.com/400x200' />
+          <h2 className={classes.question}>{props.questions[props.questionNumber].question} </h2>
+          <h4 className={`${classes.question} ${time<6 ? classes.wrong : ''}`}>{`${Math.floor(time/60)}:${time-(Math.floor(time/60)*60)}`}</h4>
+          <QuestionList
             questions={props.questions[props.questionNumber]}
             questionNumber={props.questionNumber}
-            sendAnswer={props.checkAnswer} 
-            clicked={props.index} 
+            sendAnswer={props.checkAnswer}
+            clicked={props.index}
             disabled={props.disabled}
-            token={token}
-        />
+            token={props.token}
+            rightAnswer={props.rightAnswer}
+            selectedAnswer={props.index}
+          />
+        </React.Fragment>
+      }
     </div>
   );
 }
@@ -89,13 +102,15 @@ const mapStateToProps = (state) => ({
     disabled: questionSelectors.getDisabled(state),
     index: questionSelectors.getIndex(state),
     questions: questionSelectors.getQuestions(state),
-    token: questionSelectors.getToken(state)
+    token: questionSelectors.getToken(state),
+    rightAnswer: questionSelectors.getRightAnswer(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
     changeQuestion: () => dispatch(questionsActions.changeQuestionNumber()),
-    checkAnswer: (index) => dispatch(questionsActions.checkAnswer(index)),
+    checkAnswer: (questionID, answerID, token) => dispatch(questionsActions.checkAnswer(questionID, answerID, token)),
     resetQuestions: () => dispatch(questionsActions.resetQuestions()),
+    getQuestions: () => dispatch(questionsActions.getQuestions()),
 })
 
 

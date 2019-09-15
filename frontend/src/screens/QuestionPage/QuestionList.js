@@ -16,49 +16,56 @@ export default function QuestionContainer(props: Props) {
             <QuestionButton 
                 text={props.questions.answers[0]} 
                 index={0}
-                token={token}
+                token={props.token}
+                questionID={props.questions.id}
                 questionNumber={props.questionNumber}
-                rightAnswer={props.questions.rightAnswer} 
+                rightAnswer={props.rightAnswer === 0}
                 sendAnswer={props.sendAnswer}
                 disabled={props.disabled}
                 answerStatus={props.answerStatus}
-                clicked={props.clicked} />
+                clicked={props.clicked}
+                selectedAnswer={props.selectedAnswer}/>
         </div>
         <div className={classes.questionButton}>
             <QuestionButton 
                 text={props.questions.answers[1]} 
                 index={1}
-                token={token}
+                token={props.token}
+                questionID={props.questions.id}
                 questionNumber={props.questionNumber}
-                rightAnswer={props.questions.rightAnswer} 
+                rightAnswer={props.rightAnswer === 1}
                 sendAnswer={props.sendAnswer} 
                 disabled={props.disabled}
                 answerStatus={props.answerStatus}
-                clicked={props.clicked}/>
+                clicked={props.clicked}
+                selectedAnswer={props.selectedAnswer}/>
         </div>
         <div className={classes.questionButton}>
             <QuestionButton 
                 text={props.questions.answers[2]}
                 index={2}
-                token={token}
+                token={props.token}
+                questionID={props.questions.id}
                 questionNumber={props.questionNumber}
-                rightAnswer={props.questions.rightAnswer}
+                rightAnswer={props.rightAnswer === 2}
                 sendAnswer={props.sendAnswer} 
                 disabled={props.disabled}
                 answerStatus={props.answerStatus}
-                clicked={props.clicked}/>
+                clicked={props.clicked}
+                selectedAnswer={props.selectedAnswer}/>
         </div>
         <div className={classes.questionButton}>
             <QuestionButton 
                 text={props.questions.answers[3]} 
                 index={3}
-                token={token}
+                token={props.token}
                 questionID={props.questions.id}
-                rightAnswer={props.questions.rightAnswer} 
+                rightAnswer={props.rightAnswer === 3}
                 sendAnswer={props.sendAnswer}
                 disabled={props.disabled}
                 answerStatus={props.answerStatus}
-                clicked={props.clicked} />
+                clicked={props.clicked}
+                selectedAnswer={props.selectedAnswer}/>
         </div>
     </div>
   );

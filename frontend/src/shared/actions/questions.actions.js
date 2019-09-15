@@ -20,11 +20,15 @@ const changeQuestionNumber = () => (dispatch) => {
 };
 
 const checkAnswer = (questionID, answerID, token) => (dispatch) => {
+	console.log(questionID, answerID, token);
 	questionsService.answerQuestion(questionID, answerID, token)
-		.then(response => {
+		.then(rightAnswer => {
 			dispatch({
 				type: questionsConstants.CHECK_ANSWER,
-				index: answerID,
+				payload: {
+					index: answerID,
+					rightAnswer,
+				}
 			});
 		});
 };

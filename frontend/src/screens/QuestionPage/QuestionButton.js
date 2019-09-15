@@ -39,10 +39,10 @@ const useStyles = makeStyles((theme,active) => ({
 const QuestionButton = (props: Props) => {
     const classes = useStyles();
     const submit = props.bottom ? `${classes.submit} ${classes.bottom}` : classes.submit;
-    const result = props.rightAnswer ? classes.right : classes.wrong;
+    let result = props.index !== props.selectedAnswer ? '' : (props.rightAnswer ? classes.right : classes.wrong);
     const sendAnswer = () => {
-        props.sendAnswer(props.questionID, props.index, props.token);
-    }
+      props.sendAnswer(props.questionID, props.index, props.token);
+    };
 
     return (
         <Button
@@ -51,7 +51,11 @@ const QuestionButton = (props: Props) => {
             color={colors.orange}
             size="large"
             className={`${submit} ${result}`}
-            onClick={() => sendAnswer()}
+            onClick={() => {
+              if(!props.disabled) {
+                sendAnswer();
+              }
+            }}
         >
             {props.text}
         </Button>

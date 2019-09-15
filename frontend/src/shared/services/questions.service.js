@@ -1,9 +1,8 @@
 import { fetchWrapper } from '@util';
 
 const getQuestions = () => {
-	return fetchWrapper.GET('/game/quiz/question/', { params: { lat: 50.7040982, lng: 20.91 } })
+	return fetchWrapper.GET('/game/quiz/question/', { params: { lat: 49.7040982, lng: 20.91 } })
 		.then(response => {
-			console.log(response);
 			return { ...response.data };
 		})
 		.catch(error => {
@@ -14,10 +13,9 @@ const getQuestions = () => {
 const answerQuestion = (questionID, answerID, token) => {
 	return fetchWrapper.POST('/game/quiz/answer/', { id: questionID, answer: answerID, token: token })
 		.then(response => {
-			console.log(response);
-			return response;
+			return response.data.right_answer;
 		})
-		.then(error => {
+		.catch(error => {
 			throw error;
 		});
 };
