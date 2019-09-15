@@ -32,8 +32,21 @@ const logout = () => {
 	return { type: authConstants.LOGOUT };
 };
 
+const signUp = user => dispatch => {
+	dispatch({ type: authConstants.SIGNUP_REQUEST });
+
+	authService.signUp(user)
+		.then(data => {
+			dispatch({ type: authConstants.SIGNUP_SUCCESS, payload: { data } });
+		})
+		.catch(error =>{
+			dispatch({ type: authConstants.SIGNUP_FAILURE, error: { ...error } });
+		});
+};
+
 export const authActions = {
 	loginWithAccount,
 	loginWithoutAccount,
 	logout,
+	signUp,
 };

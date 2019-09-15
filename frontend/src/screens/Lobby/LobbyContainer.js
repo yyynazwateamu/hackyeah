@@ -7,13 +7,17 @@ import CustomButton from '@components/CustomButton/CustomButton';
 import { lobbyActions, userActions } from '@actions';
 import { lobbySelectors } from '@reducers';
 import CheckIcon from '@material-ui/icons/Check';
-import DotLoader from '@assets/icons/dot-loader.svg';
+import ClearIcon from '@material-ui/icons/Clear';
+import './lobby-container.scss';
 
 const options = [
   'Zgłoś',
 ];
 
+
+
 const LobbyContainer = (props: Props) => {
+
 
   const { users } = props;
 
@@ -23,7 +27,10 @@ const LobbyContainer = (props: Props) => {
     return () => clearInterval(interval);
   }, []);
 
-  const rows = users && users.map(user => ({ name: user.name, readyIcon: (user.ready ? <CheckIcon /> : <img src={DotLoader} />) }));
+  const rows = users && users.map(user => ({ name: user.name, readyIcon: (user.ready ?
+      <CheckIcon className="greenIcon"/>
+      :
+      <ClearIcon className="redIcon"/>) }));
   const userCount = users && {
     ready: users.reduce((count, user) => user.ready ? count + 1 : count, 0),
     total: users.length,
@@ -33,7 +40,7 @@ const LobbyContainer = (props: Props) => {
     <div >
         <CustomAppBar title="Lobby" options={options} path={'/'} history={props.history} />
         <LobbyTable rows={rows} />
-        <CustomButton text={'Gotowość ' + (userCount && `${userCount.ready}/${userCount.total}`)} bottom onClick={() => { console.log('click'); props.setReadyStatus(); }}/>
+        <CustomButton text={'Ready ' + (userCount && `${userCount.ready}/${userCount.total}`)} bottom onClick={props.setReadyStatus}/>
     </div>
   );
 };
@@ -54,7 +61,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getLobbyData: () => dispatch(lobbyActions.getLobbyData()),
-  setReadyStatus: () => dispatch(lobbyActions.setReadyStatus()),
+  setReadyStatus: () => dispatch(lobbyActions.setReadyStatus(true)),
   getUserDetails: () => dispatch(userActions.getUserDetails()),
 });
 

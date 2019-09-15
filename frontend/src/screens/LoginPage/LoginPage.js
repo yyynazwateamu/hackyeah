@@ -50,10 +50,10 @@ const LoginPage = (props: Props) => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
+                id="username"
                 label="Username"
-                name="email"
-                autoComplete="email"
+                name="username"
+                autoComplete="username"
                 autoFocus
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}

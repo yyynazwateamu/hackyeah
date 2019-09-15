@@ -3,12 +3,13 @@ import React from 'react';
 import './login-page-splash.scss';
 import {Typography, Button, Container} from '@material-ui/core';
 import {useLoginStyles} from '@util';
+import MainGraphic from '@assets/graphics/MainGraphic.svg';
 
 const LoginPageSplash = (props: Props) => {
   const classes = useLoginStyles();
   return (
     <Container component="main" maxWidth="xs" >
-      <img className="upper-img" src="https://picsum.photos/200/300" alt=""/>
+      <img className="upper-img" src={MainGraphic} />
       <header className="header">
         <Typography component="h1" variant="h4" className={classes.header}>
           #TrainToKnowledge

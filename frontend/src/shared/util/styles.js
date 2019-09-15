@@ -1,5 +1,5 @@
 import {makeStyles} from '@material-ui/core/styles';
-
+import {colors} from '@constants';
 
 export const useLoginStyles = makeStyles(theme => ({
   formContainer: {
@@ -47,6 +47,22 @@ export const useLoginStyles = makeStyles(theme => ({
     width:'70%',
     textAlign:'center',
     marginTop:'20px',
+  },
+
+}));
+
+export const useErrorStyles = makeStyles(theme => ({
+  errorIcon: {
+    fontSize: theme.spacing(10),
+    color: colors.grey,
+    marginTop: theme.spacing(10),
+  },
+
+  loggedInIcon: {
+    fontSize: theme.spacing(10),
+    color: colors.lightGreen,
+    marginTop: theme.spacing(10),
   }
+
 
 }));
